@@ -32,15 +32,26 @@ def genData(filename, N, K, MAX_SZ_C, MAX_SZ_I, MAXC):
 
 
 for i in range(5, 55):
-    genData(f'input_data/{i}.txt', i, i*2, 20, 10, 100)
+    if i < 10:
+        genData(f'input_data/000{i}.txt', i, i*2, 20, 10, 100)
+    else:
+        genData(f'input_data/00{i}.txt', i, i*2, 20, 10, 100)
 
 for i in range(60, 331, 30):
-    genData(f'input_data/{i}.txt', i, i*2, 20, 10, 100)
+    if i <100:
+        genData(f'input_data/00{i}.txt', i, i*2, 20, 10, 100)
+    else:
+        genData(f'input_data/0{i}.txt', i, i*2, 20, 10, 100)
 
 for i in range(350, 801, 50):
-    genData(f'input_data/{i}.txt', i, i*2, 20, 10, 100)
+    genData(f'input_data/0{i}.txt', i, i*2, 20, 10, 100)
+
 for i in range(850, 1001, 50):
-    genData(f'input_data/{i}.txt', i, i*2, 20, 10, 100)
+    if i == 1000:
+        genData(f'input_data/{i}.txt', i, i*2, 20, 10, 100)
+    else:
+        genData(f'input_data/0{i}.txt', i, i*2, 20, 10, 100)
+
 
 
 
