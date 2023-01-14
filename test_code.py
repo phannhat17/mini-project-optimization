@@ -20,7 +20,7 @@ def read_input(file_path):
 
 
 if __name__ == "__main__":
-    n_packs, n_bins, packs, bins = read_input('./input_data/15.txt')
+    n_packs, n_bins, packs, bins = read_input('./input_data/0015.txt')
     print()
     print(f'Number of packs: {n_packs}')
     print(packs)
