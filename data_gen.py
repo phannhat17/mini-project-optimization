@@ -9,8 +9,6 @@ def genData(filename, N, K, MAX_SZ_C, MAX_SZ_I, MAXC):
     L = [0 for i in range(K)]
     c = [0 for i in range(K)]
 
-
-
     for i in range(N):
         w[i] = rd.randint(1, MAX_SZ_I)
         l[i] = rd.randint(1, MAX_SZ_I)
@@ -23,13 +21,11 @@ def genData(filename, N, K, MAX_SZ_C, MAX_SZ_I, MAXC):
         L[k] = rd.randint(maxL, MAX_SZ_C)
         c[k] = rd.randint(MAXC//2, MAXC)
 
-    
     for i in range(N):
         f.write(str(w[i]) + ' ' + str(l[i]) +'\n')
     for k in range(K):
         f.write(str(W[k]) + ' ' + str(L[k]) + ' '  + str(c[k]) +'\n')
         
-
 
 for i in range(5, 55):
     if i < 10:
