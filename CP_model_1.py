@@ -1,3 +1,5 @@
+# If the pack is rotated, then change the width and height of the pack
+
 from ortools.sat.python import cp_model
 import sys
 
