@@ -1,4 +1,6 @@
-# If the pack is rotated, then change the width and height of the pack
+# This code is based on the CP model in the root folder of the project:
+# If the pack is rotated, change the current coordinate
+
 
 from ortools.sat.python import cp_model
 import sys, os, time
@@ -23,11 +25,12 @@ def read_input(file_path):
 
     return n_packs, n_bins, packs, bins
 
-def main_solver(file_path, time_limit):
+def main_solver(file_path, time_limit: int = 600):
     n_packs, n_bins, packs, bins = read_input(file_path)
+
     max_width = max(x[0] for x in bins)
     max_height = max(x[1] for x in bins)
-    
+
     # Creates the model
     model = cp_model.CpModel()
 
@@ -46,25 +49,22 @@ def main_solver(file_path, time_limit):
     # rotate[i] = 1 iff item i is rotated
     rotate = [model.NewBoolVar(f'package_{i}_rotated') for i in range(n_packs)]
 
-    # Width and height of each pack
-    width = []
-    height = []
+    # Coordinate
+    r = [] # right coordinate
+    l = [] # left coordinate
+    t = [] # top coordinate
+    b = [] # bottom coordinate
     for i in range(n_packs):
-        width.append(model.NewIntVar(0, max_width, f'width_{i}'))
-        height.append(model.NewIntVar(0, max_height, f'height_{i}'))
+        r.append(model.NewIntVar(0, max_width, f'r_{i}'))
+        l.append(model.NewIntVar(0, max_width, f'l_{i}'))
+        t.append(model.NewIntVar(0, max_height, f't_{i}'))
+        b.append(model.NewIntVar(0, max_height, f'b_{i}'))
 
-        # if pack rotated -> switch the height and width
-        model.Add(width[i] == packs[i][0]).OnlyEnforceIf(rotate[i].Not())
-        model.Add(width[i] == packs[i][1]).OnlyEnforceIf(rotate[i])
-        model.Add(height[i] == packs[i][1]).OnlyEnforceIf(rotate[i].Not())
-        model.Add(height[i] == packs[i][0]).OnlyEnforceIf(rotate[i])
-
-    # Top-right coordinate
-    x = []
-    y = [] 
-    for i in range(n_packs):
-        x.append(model.NewIntVar(0, max_width, f'x_{i}'))
-        y.append(model.NewIntVar(0, max_height, f'y_{i}'))
+        # if pack rotated -> change the current coordinate
+        model.Add(r[i] ==  l[i] + packs[i][0]).OnlyEnforceIf(rotate[i].Not())
+        model.Add(r[i] ==  l[i] + packs[i][1]).OnlyEnforceIf(rotate[i])
+        model.Add(t[i] ==  b[i] + packs[i][1]).OnlyEnforceIf(rotate[i].Not())
+        model.Add(t[i] ==  b[i] + packs[i][0]).OnlyEnforceIf(rotate[i])
 
     # 
     # Constraint
@@ -72,31 +72,29 @@ def main_solver(file_path, time_limit):
     # Each pack can only be placed in one bin
     for i in range(n_packs):
         model.Add(sum(pack_in_bin[i, j] for j in range(n_bins)) == 1)
-        
+
     # if pack in bin, it cannot exceed the bin size
     for i in range(n_packs):
         for j in range(n_bins):
-            model.Add(x[i] <= bins[j][0]).OnlyEnforceIf(pack_in_bin[i, j])
-            model.Add(y[i] <= bins[j][1]).OnlyEnforceIf(pack_in_bin[i, j])
-            model.Add(x[i] >= width[i]).OnlyEnforceIf(pack_in_bin[i, j])
-            model.Add(y[i] >= height[i]).OnlyEnforceIf(pack_in_bin[i, j])            
+            model.Add(r[i] <= bins[j][0]).OnlyEnforceIf(pack_in_bin[i, j])
+            model.Add(t[i] <= bins[j][1]).OnlyEnforceIf(pack_in_bin[i, j])
 
     # If 2 pack in the same bin they cannot overlap
     for i in range(n_packs):
         for k in range(i+1, n_packs):
-            a1 = model.NewBoolVar('a1')        
-            model.Add(x[i] <= x[k] - width[k]).OnlyEnforceIf(a1)
-            a2 = model.NewBoolVar('a2')        
-            model.Add(y[i] <= y[k] - height[k]).OnlyEnforceIf(a2)
-            a3 = model.NewBoolVar('a3')        
-            model.Add(x[k] <= x[i] - width[i]).OnlyEnforceIf(a3)
-            a4 = model.NewBoolVar('a4')        
-            model.Add(y[k] <= y[i] - height[i]).OnlyEnforceIf(a4)
+                a1 = model.NewBoolVar('a1')        
+                model.Add(r[i] <= l[k]).OnlyEnforceIf(a1)
+                a2 = model.NewBoolVar('a2')        
+                model.Add(t[i] <= b[k]).OnlyEnforceIf(a2)
+                a3 = model.NewBoolVar('a3')        
+                model.Add(r[k] <= l[i]).OnlyEnforceIf(a3)
+                a4 = model.NewBoolVar('a4')        
+                model.Add(t[k] <= b[i]).OnlyEnforceIf(a4)
 
-            for j in range(n_bins):
-                model.AddBoolOr(a1, a2, a3, a4).OnlyEnforceIf(pack_in_bin[i, j], pack_in_bin[k, j])
- 
-    # Find which bin has been used               
+                for j in range(n_bins):
+                    model.AddBoolOr(a1, a2, a3, a4).OnlyEnforceIf(pack_in_bin[i, j], pack_in_bin[k, j])
+
+    # Find which bin has been used
     for j in range(n_bins):
         e = model.NewBoolVar('e')
         model.Add(sum(pack_in_bin[i, j] for i in range(n_packs)) == 0).OnlyEnforceIf(e)
@@ -125,7 +123,6 @@ def main_solver(file_path, time_limit):
         print(f'Explored branches   : {solver.NumBranches()}')
     else:
         print('NO SOLUTIONS')
-    
 
 if __name__ == "__main__":
     try:
@@ -138,3 +135,6 @@ if __name__ == "__main__":
     time_limit = 120
     main_solver(file_path, time_limit)
     
+
+    
+
