@@ -3,7 +3,7 @@
 
 files=$(ls input_data | head -n 8)
 
-echo "n_packs, n_bins, n_bins_used, cost, time_limit, running_time" > output/CP_model/results.csv
+echo "n_packs, n_bins, n_bins_used, cost, time_limit, running_time," > output/CP_model/results.csv
 # Iterate through the first 5 files
 for file in $files; do
     # Run CP_model_1.py with the current file as input
