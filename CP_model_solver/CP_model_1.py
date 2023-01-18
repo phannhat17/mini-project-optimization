@@ -115,8 +115,11 @@ def main_solver(file_path, time_limit: int = 600):
     print(f'Current file        : {os.path.basename(__file__).split("/")[-1]}')
     if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
         print('--------------Solution Found--------------')
+        print(f'Number of pack given: {n_packs}')
+        print(f'Number of car given : {n_bins}')
         print(f'Number of car used  : {sum(solver.Value(bin_is_used[i]) for i in range(n_bins))}')
         print(f'Total cost          : {solver.ObjectiveValue()}')
+        print(f'Time limit          : {time_limit}')
         print('----------------Statistics----------------')
         print(f'Status              : {solver.StatusName(status)}')
         print(f'Running time        : {solver.UserTime()}')
@@ -131,8 +134,14 @@ if __name__ == "__main__":
     except IndexError:
         # Default input file if file path is not specified
         file_path = '../input_data/0015.txt'
+    
+    try:
+        # Get input file path
+        time_limit = int(sys.argv[2])
+    except IndexError:
+        # Default input file if file path is not specified
+        time_limit = 300
 
-    time_limit = 120
     main_solver(file_path, time_limit)
     
 
