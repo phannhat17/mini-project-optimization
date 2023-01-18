@@ -6,6 +6,6 @@ There are `K` trucks `1,2,...,K` for transporting `N` packages of `1, 2, ..., N`
 The input data format and how we generated them can be found [here](./input_data/README.md) 
 
 ## Modeling the problem
-- CP model: Details are written in [this file](CP.pdf)
+- CP model: Details are written in [this file](CP_model.pdf)
 - MIP model:
 - Heuristic: 
