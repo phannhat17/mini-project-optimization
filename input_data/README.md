@@ -1,4 +1,4 @@
-# Input data for this problem
+## Format
 - First line: `N` and `K`
 - Next `N` lines: `wi` and `li`
 - Last `K` lines: `Wk`, `Lk` and `ck` 
