@@ -1,7 +1,7 @@
 # If the pack is rotated, then change the width and height of the pack
 
 from ortools.sat.python import cp_model
-import sys, time
+import sys, os, time
 
 def read_input(file_path):
     '''
@@ -30,8 +30,6 @@ def main_solver(file_path, time_limit):
     
     # Creates the model
     model = cp_model.CpModel()
-    time1 = time.time()
-
 
     # 
     # Variables
@@ -48,31 +46,34 @@ def main_solver(file_path, time_limit):
     # rotate[i] = 1 iff item i is rotated
     rotate = [model.NewBoolVar(f'package_{i}_rotated') for i in range(n_packs)]
 
-    # 
-    # Constraint
-    # 
-    # Each pack can only be placed in one bin
-    for i in range(n_packs):
-        model.Add(sum(pack_in_bin[i, j] for j in range(n_bins)) == 1)
-
-    # 
+    # Width and height of each pack
     width = []
     height = []
     for i in range(n_packs):
         width.append(model.NewIntVar(0, max_width, f'width_{i}'))
         height.append(model.NewIntVar(0, max_height, f'height_{i}'))
 
+        # if pack rotated -> switch the height and width
         model.Add(width[i] == packs[i][0]).OnlyEnforceIf(rotate[i].Not())
         model.Add(width[i] == packs[i][1]).OnlyEnforceIf(rotate[i])
         model.Add(height[i] == packs[i][1]).OnlyEnforceIf(rotate[i].Not())
         model.Add(height[i] == packs[i][0]).OnlyEnforceIf(rotate[i])
 
+    # Top-right coordinate
     x = []
-    y = []
+    y = [] 
     for i in range(n_packs):
         x.append(model.NewIntVar(0, max_width, f'x_{i}'))
         y.append(model.NewIntVar(0, max_height, f'y_{i}'))
 
+    # 
+    # Constraint
+    # 
+    # Each pack can only be placed in one bin
+    for i in range(n_packs):
+        model.Add(sum(pack_in_bin[i, j] for j in range(n_bins)) == 1)
+        
+    # if pack in bin, it cannot exceed the bin size
     for i in range(n_packs):
         for j in range(n_bins):
             model.Add(x[i] <= bins[j][0]).OnlyEnforceIf(pack_in_bin[i, j])
@@ -83,19 +84,19 @@ def main_solver(file_path, time_limit):
     # If 2 pack in the same bin they cannot overlap
     for i in range(n_packs):
         for k in range(i+1, n_packs):
-                # check if the two packs are not overlapping
-                a1 = model.NewBoolVar('a1')        
-                model.Add(x[i] <= x[k] - width[k]).OnlyEnforceIf(a1)
-                a2 = model.NewBoolVar('a2')        
-                model.Add(y[i] <= y[k] - height[k]).OnlyEnforceIf(a2)
-                a3 = model.NewBoolVar('a3')        
-                model.Add(x[k] <= x[i] - width[i]).OnlyEnforceIf(a3)
-                a4 = model.NewBoolVar('a4')        
-                model.Add(y[k] <= y[i] - height[i]).OnlyEnforceIf(a4)
+            a1 = model.NewBoolVar('a1')        
+            model.Add(x[i] <= x[k] - width[k]).OnlyEnforceIf(a1)
+            a2 = model.NewBoolVar('a2')        
+            model.Add(y[i] <= y[k] - height[k]).OnlyEnforceIf(a2)
+            a3 = model.NewBoolVar('a3')        
+            model.Add(x[k] <= x[i] - width[i]).OnlyEnforceIf(a3)
+            a4 = model.NewBoolVar('a4')        
+            model.Add(y[k] <= y[i] - height[i]).OnlyEnforceIf(a4)
 
-                for j in range(n_bins):
-                    model.AddBoolOr(a1, a2, a3, a4).OnlyEnforceIf(pack_in_bin[i, j], pack_in_bin[k, j])
-                    
+            for j in range(n_bins):
+                model.AddBoolOr(a1, a2, a3, a4).OnlyEnforceIf(pack_in_bin[i, j], pack_in_bin[k, j])
+ 
+    # Find which bin has been used               
     for j in range(n_bins):
         e = model.NewBoolVar('e')
         model.Add(sum(pack_in_bin[i, j] for i in range(n_packs)) == 0).OnlyEnforceIf(e)
@@ -103,29 +104,37 @@ def main_solver(file_path, time_limit):
         model.Add(sum(pack_in_bin[i, j] for i in range(n_packs)) != 0).OnlyEnforceIf(e.Not())
         model.Add(bin_is_used[j] == 1).OnlyEnforceIf(e.Not())
 
-
-    print(time.time()-time1)
+    # Objective function
     cost = sum(bin_is_used[j] * bins[j][2] for j in range(n_bins))
     model.Minimize(cost)
+
+    # Creates a solver and solves the model
     solver = cp_model.CpSolver()
     solver.parameters.max_time_in_seconds = time_limit
     status = solver.Solve(model)
 
+    # Print the results
+    print(f'Current file        : {os.path.basename(__file__).split("/")[-1]}')
     if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
-        print(solver.StatusName(status))
-        print(f'time : {solver.UserTime()}')
-        print(f'Number of car {sum(solver.Value(bin_is_used[i]) for i in range(n_bins))}')
-        print(f'cost : {solver.ObjectiveValue()}')
-        print(f'branches : {solver.NumBranches()}')
+        print('--------------Solution Found--------------')
+        print(f'Number of car used  : {sum(solver.Value(bin_is_used[i]) for i in range(n_bins))}')
+        print(f'Total cost          : {solver.ObjectiveValue()}')
+        print('----------------Statistics----------------')
+        print(f'Status              : {solver.StatusName(status)}')
+        print(f'Running time        : {solver.UserTime()}')
+        print(f'Explored branches   : {solver.NumBranches()}')
     else:
         print('NO SOLUTIONS')
+    
+
 if __name__ == "__main__":
     try:
         # Get input file path
         file_path = sys.argv[1]
     except IndexError:
         # Default input file if file path is not specified
-        file_path = 'input_data/0350.txt'
+        file_path = 'input_data/0015.txt'
+
     time_limit = 120
     main_solver(file_path, time_limit)
     

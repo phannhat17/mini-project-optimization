@@ -3,7 +3,7 @@
 
 
 from ortools.sat.python import cp_model
-import sys, time
+import sys, os, time
 
 def read_input(file_path):
     '''
@@ -33,9 +33,6 @@ def main_solver(file_path, time_limit: int = 600):
 
     # Creates the model
     model = cp_model.CpModel()
-    time1 = time.time()
-    solver = cp_model.CpSolver()
-    solver.parameters.max_time_in_seconds = time_limit
 
     # 
     # Variables
@@ -45,7 +42,6 @@ def main_solver(file_path, time_limit: int = 600):
     for i in range(n_packs):
         for j in range(n_bins):
             pack_in_bin[i, j] = model.NewBoolVar(f'pack_{i}_in_bin_{j}')
-
 
     # bin_is_used[j] = 1 iff bin j has been used.
     bin_is_used = [model.NewBoolVar(f'bin_{j}_is_used)') for j in range(n_bins)]
@@ -98,7 +94,7 @@ def main_solver(file_path, time_limit: int = 600):
                 for j in range(n_bins):
                     model.AddBoolOr(a1, a2, a3, a4).OnlyEnforceIf(pack_in_bin[i, j], pack_in_bin[k, j])
 
-    #  Find which bin has been used
+    # Find which bin has been used
     for j in range(n_bins):
         e = model.NewBoolVar('e')
         model.Add(sum(pack_in_bin[i, j] for i in range(n_packs)) == 0).OnlyEnforceIf(e)
@@ -106,23 +102,25 @@ def main_solver(file_path, time_limit: int = 600):
         model.Add(sum(pack_in_bin[i, j] for i in range(n_packs)) != 0).OnlyEnforceIf(e.Not())
         model.Add(bin_is_used[j] == 1).OnlyEnforceIf(e.Not())
 
-
-    print(time.time()-time1)
-
-    # Total cost
+    # Objective function
     cost = sum(bin_is_used[j] * bins[j][2] for j in range(n_bins))
-
-    # Minimize the total cost
     model.Minimize(cost)
+
+    # Creates a solver and solves the model
+    solver = cp_model.CpSolver()
+    solver.parameters.max_time_in_seconds = time_limit
     status = solver.Solve(model)
 
+    # Print the results
+    print(f'Current file        : {os.path.basename(__file__).split("/")[-1]}')
     if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
-        print(solver.StatusName(status))
-        print(f'time : {solver.UserTime()}')
-        print(f'Number of car {sum(solver.Value(bin_is_used[i]) for i in range(n_bins))}')
-        print(f'cost : {solver.ObjectiveValue()}')
-        print(f'branches : {solver.NumBranches()}')
-
+        print('--------------Solution Found--------------')
+        print(f'Number of car used  : {sum(solver.Value(bin_is_used[i]) for i in range(n_bins))}')
+        print(f'Total cost          : {solver.ObjectiveValue()}')
+        print('----------------Statistics----------------')
+        print(f'Status              : {solver.StatusName(status)}')
+        print(f'Running time        : {solver.UserTime()}')
+        print(f'Explored branches   : {solver.NumBranches()}')
     else:
         print('NO SOLUTIONS')
 
@@ -132,7 +130,7 @@ if __name__ == "__main__":
         file_path = sys.argv[1]
     except IndexError:
         # Default input file if file path is not specified
-        file_path = 'input_data/0350.txt'
+        file_path = 'input_data/0015.txt'
 
     time_limit = 120
     main_solver(file_path, time_limit)
