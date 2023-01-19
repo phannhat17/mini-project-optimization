@@ -112,16 +112,16 @@ def main_solver(file_path, time_limit: int = 600):
     status = solver.Solve(model)
 
     # Print the results
-    print(f'Current file        : {os.path.basename(__file__).split("/")[-1]}')
+    print('----------------Given data----------------')
+    print(f'Number of pack given: {n_packs}')
+    print(f'Number of car given : {n_bins}')
     if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
         print('--------------Solution Found--------------')
-        print(f'Number of pack given: {n_packs}')
-        print(f'Number of car given : {n_bins}')
         print(f'Number of car used  : {sum(solver.Value(bin_is_used[i]) for i in range(n_bins))}')
         print(f'Total cost          : {solver.ObjectiveValue()}')
-        print(f'Time limit          : {time_limit}')
         print('----------------Statistics----------------')
         print(f'Status              : {solver.StatusName(status)}')
+        print(f'Time limit          : {time_limit}')
         print(f'Running time        : {solver.UserTime()}')
         print(f'Explored branches   : {solver.NumBranches()}')
     else:
