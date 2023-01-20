@@ -4,7 +4,7 @@
 files=$(ls generated_data)
 time_limit=300
 
-echo "n_packs, n_bins, n_bins_used, cost, time_limit, running_time, status" > output/CP_model/results.csv
+echo "n_packs, n_bins, n_bins_used, cost, time_limit, running_time, status," > output/CP_model/results.csv
 
 for file in $files; do
 
