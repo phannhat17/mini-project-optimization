@@ -16,6 +16,7 @@ The input data format and how we generated them can be found [here](./input_data
 ```
 ./script/collect_results.sh {mode} {attempt}
 ```
+Example:
 ```
 ./script/collect_results.sh CP 1
 ```  
