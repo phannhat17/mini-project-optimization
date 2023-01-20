@@ -23,7 +23,7 @@ Ram: ~12.68GB
 ```
 Example:
 ```
-./script/collect_results.sh CP 1
+./script/collect_results.sh MIP 1
 ```  
-The commmand above will collect the results created by `CP_model solver` in the `1st attempt`  
-**Note: if you dont change the attempt number, the results will rewrite each other**
+The commmand above will collect the results created by `MIP solver` in the `1st attempt`  
+**Note: Change the attempt number for each attempt or the results will rewrite each other**
