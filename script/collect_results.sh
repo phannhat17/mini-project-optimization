@@ -29,13 +29,13 @@ stats=("Number of bin used" "Total cost" "Status" "Running time")
 for file in $files; do
     # Run the solver 
     if [ $mode == "CP1" ]; then 
-        python solver_file/CP_model_solver/CP_model_1.py $file > $output_folder/$(basename $file).out
+        python solver_file/CP_model_solver/CP_model_1.py $file $time_limit > $output_folder/$(basename $file).out
     elif [ $mode == "CP2" ]; then 
-        python solver_file/CP_model_solver/CP_model_2.py $file > $output_folder/$(basename $file).out
+        python solver_file/CP_model_solver/CP_model_2.py $file $time_limit > $output_folder/$(basename $file).out
     elif [ $mode == "MIP" ]; then 
-        python solver_file/CP_model_solver/CP_model_2.py $file > $output_folder/$(basename $file).out
+        python solver_file/CP_model_solver/CP_model_2.py $file $time_limit > $output_folder/$(basename $file).out
     elif [ $mode == "HEU" ]; then 
-        python solver_file/CP_model_solver/CP_model_2.py $file > $output_folder/$(basename $file).out
+        python solver_file/CP_model_solver/CP_model_2.py $file $time_limit > $output_folder/$(basename $file).out
     fi
 
     # Get the input number of packages and number of bins from input file
