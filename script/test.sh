@@ -1,30 +1,30 @@
 #!/bin/bash
 
 
-mode=$1 # CP, MIP
-attempt=$2 
+mode=$1         # CP, MIP
+attempt=$2      # attempt
 
 
-output_folder=results/result_${mode}_model  # output folder for results file
-output_csv=$output_folder/results_$attempt.csv # csv file for results 
+output_folder=results/result_${mode}_model      # output folder for results file
+output_csv=$output_folder/results_$attempt.csv  # csv file for results 
 
 
-input_data_folder=input_data/       # input data folder
+input_data_folder=input_data/                   # input data folder
 
 
-files=$(ls $input_data_folder/*.txt)       # List all *.txt files in input folder
+files=$(ls $input_data_folder/*.txt)            # List all *.txt files in input folder
 
 
-time_limit=300                      # Time limit for the test
+time_limit=300                                  # Time limit for the test
 
 
-mkdir -p $output_folder             # Create output folder if it doesn't exist
+mkdir -p $output_folder                         # Create output folder if it doesn't exist
 
 
 # Create the columns for the results file
 echo "n_packs, n_bins, n_bins_used, cost, status, running_time, time_limit," > $output_csv
 
-list=("Number of bin used" "Total cost" "Status" "Running time")
+stats=("Number of bin used" "Total cost" "Status" "Running time")
 
 for file in $files; do
 
@@ -36,7 +36,7 @@ for file in $files; do
         python solver_file/CP_model_solver/CP_model_1.py $file > $output_folder/$(basename $file).out
     fi
 
-    for item in "${list[@]}"; do
+    for item in "${stats[@]}"; do
         value=$(grep "$item" "$output_folder/$(basename $file).out" | awk '{print $NF}')
         echo "$value" | tr '\n' ',' >> $output_csv
     done
@@ -44,7 +44,7 @@ for file in $files; do
     # Write the time_limit to result file
     echo $time_limit | tr '\n' ',' >> $output_csv    
 
-    echo >> $output_csv          # Add new line in the results file
+    echo >> $output_csv                         # Add new line in the results file
 
     rm $output_folder/$(basename $file).out     # Remove the temporary output file
 
