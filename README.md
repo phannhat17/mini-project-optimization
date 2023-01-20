@@ -11,6 +11,11 @@ The input data format and how we generated them can be found [here](./input_data
 - Heuristic: 
 
 ## The results
+We collect the results by running `collect_results` on `google colab`. Specs of the wm:
+```
+Intel(R) Xeon(R) CPU @ 2.20GHz
+Ram: ~12.68GB
+```
 - The results for each model are shown in the `results` folder.
 - If you want to collect results by yourself, you can run the `collect_results` script by this command:
 ```
