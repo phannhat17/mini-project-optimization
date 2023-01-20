@@ -36,6 +36,7 @@ for file in $files; do
         python solver_file/CP_model_solver/CP_model_1.py $file > $output_folder/$(basename $file).out
     fi
 
+    # Get stats from the solver, if not return blank 
     for item in "${stats[@]}"; do
         value=$(grep "$item" "$output_folder/$(basename $file).out" | awk '{print $NF}')
         echo "$value" | tr '\n' ',' >> $output_csv
