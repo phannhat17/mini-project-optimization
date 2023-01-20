@@ -9,3 +9,15 @@ The input data format and how we generated them can be found [here](./input_data
 - CP model: Details are written in [this file](CP_model.pdf)
 - MIP model:
 - Heuristic: 
+
+## The results
+- The results for each model are shown in the `results` folder.
+- If you want to collect results by yourself, you can run the `collect_results` script by this command:
+```
+./script/collect_results.sh {mode} {attempt}
+```
+```
+./script/collect_results.sh CP 1
+```  
+The commmand above will collect the results created by `CP_model solver` in the `1st attempt`  
+**Note: if you dont change the attempt number, the results will rewrite each other**
