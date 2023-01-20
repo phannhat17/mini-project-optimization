@@ -49,9 +49,15 @@ def main_solver(file_path, time_limit):
     # Width and height of each pack
     width = []
     height = []
+    # Top-right coordinate
+    x = []
+    y = [] 
     for i in range(n_packs):
         width.append(model.NewIntVar(0, max_width, f'width_{i}'))
         height.append(model.NewIntVar(0, max_height, f'height_{i}'))
+
+        x.append(model.NewIntVar(0, max_width, f'x_{i}'))
+        y.append(model.NewIntVar(0, max_height, f'y_{i}'))
 
         # if pack rotated -> switch the height and width
         model.Add(width[i] == packs[i][0]).OnlyEnforceIf(rotate[i].Not())
@@ -59,12 +65,7 @@ def main_solver(file_path, time_limit):
         model.Add(height[i] == packs[i][1]).OnlyEnforceIf(rotate[i].Not())
         model.Add(height[i] == packs[i][0]).OnlyEnforceIf(rotate[i])
 
-    # Top-right coordinate
-    x = []
-    y = [] 
-    for i in range(n_packs):
-        x.append(model.NewIntVar(0, max_width, f'x_{i}'))
-        y.append(model.NewIntVar(0, max_height, f'y_{i}'))
+
 
     # 
     # Constraint
