@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-mode=$1         # CP, MIP
+mode=$1         # CP, MIP, HEU
 attempt=$2      # attempt
 
 
