@@ -113,10 +113,10 @@ def main_solver(file_path, time_limit: int = 600):
     # Print the results
     print('----------------Given data----------------')
     print(f'Number of pack given: {n_packs}')
-    print(f'Number of car given : {n_bins}')
+    print(f'Number of bin given : {n_bins}')
     if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
         print('--------------Solution Found--------------')
-        print(f'Number of car used  : {sum(solver.Value(bin_is_used[i]) for i in range(n_bins))}')
+        print(f'Number of bin used  : {sum(solver.Value(bin_is_used[i]) for i in range(n_bins))}')
         print(f'Total cost          : {solver.ObjectiveValue()}')
         print('----------------Statistics----------------')
         print(f'Status              : {solver.StatusName(status)}')
