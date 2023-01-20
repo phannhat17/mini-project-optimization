@@ -3,8 +3,7 @@
 
 
 from ortools.sat.python import cp_model
-import sys, os, time
-
+import sys
 def read_input(file_path):
     '''
         Return number of packs (n_packs); number of bins (n_bins); 
@@ -82,17 +81,17 @@ def main_solver(file_path, time_limit: int = 600):
     # If 2 pack in the same bin they cannot overlap
     for i in range(n_packs):
         for k in range(i+1, n_packs):
-                a1 = model.NewBoolVar('a1')        
-                model.Add(r[i] <= l[k]).OnlyEnforceIf(a1)
-                a2 = model.NewBoolVar('a2')        
-                model.Add(t[i] <= b[k]).OnlyEnforceIf(a2)
-                a3 = model.NewBoolVar('a3')        
-                model.Add(r[k] <= l[i]).OnlyEnforceIf(a3)
-                a4 = model.NewBoolVar('a4')        
-                model.Add(t[k] <= b[i]).OnlyEnforceIf(a4)
+            a1 = model.NewBoolVar('a1')        
+            model.Add(r[i] <= l[k]).OnlyEnforceIf(a1)
+            a2 = model.NewBoolVar('a2')        
+            model.Add(t[i] <= b[k]).OnlyEnforceIf(a2)
+            a3 = model.NewBoolVar('a3')        
+            model.Add(r[k] <= l[i]).OnlyEnforceIf(a3)
+            a4 = model.NewBoolVar('a4')        
+            model.Add(t[k] <= b[i]).OnlyEnforceIf(a4)
 
-                for j in range(n_bins):
-                    model.AddBoolOr(a1, a2, a3, a4).OnlyEnforceIf(pack_in_bin[i, j], pack_in_bin[k, j])
+            for j in range(n_bins):
+                model.AddBoolOr(a1, a2, a3, a4).OnlyEnforceIf(pack_in_bin[i, j], pack_in_bin[k, j])
 
     # Find which bin has been used
     for j in range(n_bins):
