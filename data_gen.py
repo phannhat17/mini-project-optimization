@@ -46,24 +46,24 @@ MAXC = 100
 
 for i in range(5, 55):
     if i < 10:
-        genData(f'input_data/000{i}.txt', i, i, MAX_SZ_C, MAX_SZ_I, MAXC)
+        genData(f'input_data/000{i}.txt', i, i//2, MAX_SZ_C, MAX_SZ_I, MAXC)
     else:
-        genData(f'input_data/00{i}.txt', i, i, MAX_SZ_C, MAX_SZ_I, MAXC)
+        genData(f'input_data/00{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
 
 for i in range(60, 331, 30):
     if i <100:
-        genData(f'input_data/00{i}.txt', i, i, MAX_SZ_C, MAX_SZ_I, MAXC)
+        genData(f'input_data/00{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
     else:
-        genData(f'input_data/0{i}.txt', i, i, MAX_SZ_C, MAX_SZ_I, MAXC)
+        genData(f'input_data/0{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
 
 for i in range(350, 801, 50):
-    genData(f'input_data/0{i}.txt', i, i, MAX_SZ_C, MAX_SZ_I, MAXC)
+    genData(f'input_data/0{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
 
 for i in range(850, 1001, 50):
     if i == 1000:
-        genData(f'input_data/{i}.txt', i, i, MAX_SZ_C, MAX_SZ_I, MAXC)
+        genData(f'input_data/{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
     else:
-        genData(f'input_data/0{i}.txt', i, i, MAX_SZ_C, MAX_SZ_I, MAXC)
+        genData(f'input_data/0{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
 
 
 
