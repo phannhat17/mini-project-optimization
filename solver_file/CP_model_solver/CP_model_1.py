@@ -86,13 +86,13 @@ def main_solver(file_path, time_limit: int = 600):
             model.Add(r[i] > l[k]).OnlyEnforceIf(a1.Not())
             a2 = model.NewBoolVar('a2')        
             model.Add(t[i] <= b[k]).OnlyEnforceIf(a2)
-            model.Add(r[i] > l[k]).OnlyEnforceIf(a1.Not())
+            model.Add(t[i] > b[k]).OnlyEnforceIf(a2.Not())
             a3 = model.NewBoolVar('a3')        
             model.Add(r[k] <= l[i]).OnlyEnforceIf(a3)
-            model.Add(r[i] > l[k]).OnlyEnforceIf(a1.Not())
+            model.Add(r[k] > l[i]).OnlyEnforceIf(a3.Not())
             a4 = model.NewBoolVar('a4')        
             model.Add(t[k] <= b[i]).OnlyEnforceIf(a4)
-            model.Add(r[i] > l[k]).OnlyEnforceIf(a1.Not())
+            model.Add(t[k] > b[i]).OnlyEnforceIf(a4.Not())
 
             for j in range(n_bins):
                 model.AddBoolOr(a1, a2, a3, a4).OnlyEnforceIf(pack_in_bin[i, j], pack_in_bin[k, j])
