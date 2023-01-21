@@ -16,26 +16,26 @@ if [ -z "$mode" ]; then
 else
     output_folder=results/result_${mode}_model      # output folder for results file
 
-    output_csv=$output_folder/results_$attempt.csv  # csv file for results 
+    output_csv=$output_folder/results_${mode}_$attempt.csv  # csv file for results 
 
     mkdir -p $output_folder                         # Create output folder if it doesn't exist
 fi
 
 # Create the columns for the results file
-echo "n_packs, n_bins, n_bins_used, cost, status, running_time, time_limit," > $output_csv
+echo "n_packs, n_bins, n_bins_used, cost, status, solver_running_time, real_running_time, time_limit_for_solver," > $output_csv
 
-stats=("Number of bin used" "Total cost" "Status" "Running time")
+stats=("Number of bin used" "Total cost" "Status" "Running time" "Real running Time")
 
 for file in $files; do
     # Run the solver 
     if [ $mode == "CP1" ]; then 
-        python solver_file/CP_model_solver/CP_model_1.py $file $time_limit > $output_folder/$(basename $file).out
+        /usr/bin/time -f "Real running Time: %e" -ao $output_folder/$(basename $file).out  python solver_file/CP_model_solver/CP_model_1.py $file $time_limit > $output_folder/$(basename $file).out 
     elif [ $mode == "CP2" ]; then 
-        python solver_file/CP_model_solver/CP_model_2.py $file $time_limit > $output_folder/$(basename $file).out
+        /usr/bin/time -f "Real running Time: %e" -ao $output_folder/$(basename $file).out  python solver_file/CP_model_solver/CP_model_2.py $file $time_limit > $output_folder/$(basename $file).out 
     elif [ $mode == "MIP" ]; then 
-        python solver_file/CP_model_solver/CP_model_2.py $file $time_limit > $output_folder/$(basename $file).out
+        /usr/bin/time -f "Real running Time: %e" -ao $output_folder/$(basename $file).out  python solver_file/CP_model_solver/CP_model_1.py $file $time_limit > $output_folder/$(basename $file).out 
     elif [ $mode == "HEU" ]; then 
-        python solver_file/CP_model_solver/CP_model_2.py $file $time_limit > $output_folder/$(basename $file).out
+        /usr/bin/time -f "Real running Time: %e" -ao $output_folder/$(basename $file).out  python solver_file/CP_model_solver/CP_model_1.py $file $time_limit > $output_folder/$(basename $file).out 
     fi
 
     # Get the input number of packages and number of bins from input file
