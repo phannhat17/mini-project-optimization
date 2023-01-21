@@ -28,6 +28,7 @@ stats=("Number of bin used" "Total cost" "Status" "Running time" "Real running T
 
 for file in $files; do
     # Run the solver 
+    echo "Working with $(basename $file)"
     if [ $mode == "CP1" ]; then 
         /usr/bin/time -f "Real running Time: %e" -ao $output_folder/$(basename $file).out  python solver_file/CP_model_solver/CP_model_1.py $file $time_limit > $output_folder/$(basename $file).out 
     elif [ $mode == "CP2" ]; then 
