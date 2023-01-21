@@ -16,7 +16,7 @@ if [ -z "$mode" ]; then
 else
     output_folder=results/result_${mode}_model      # output folder for results file
 
-    output_csv=$output_folder/results_${mode}_$attempt.csv  # csv file for results 
+    output_csv=$output_folder/results_${mode}_$time_limit_$attempt.csv  # csv file for results 
 
     mkdir -p $output_folder                         # Create output folder if it doesn't exist
 fi
