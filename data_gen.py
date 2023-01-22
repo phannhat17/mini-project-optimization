@@ -42,7 +42,6 @@ def genData(filename, N, K, MAX_SZ_C, MAX_SZ_I, MAXC):
 MAX_SZ_C = 20
 MAX_SZ_I = 10
 MAXC = 100
-# And the number of bins = the number of packs for always have feasible solution
 
 for i in range(15, 30):
     genData(f'input_data/00{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
