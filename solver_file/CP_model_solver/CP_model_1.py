@@ -120,6 +120,19 @@ def main_solver(file_path, time_limit: int = 600):
     print(f'Number of bin given : {n_bins}')
     if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
         print('--------------Solution Found--------------')
+
+        # # Uncomment if you want to see the way to put packages in bins
+        # # Not necessary in the statistics, so we comment it out
+        # for i in range(n_packs):
+        #     if solver.Value(rotate[i]) == 1:
+        #         print(f'Rotate pack {i+1} and put', end=' ')
+        #     else:
+        #         print(f'Put pack {i+1}', end=' ')
+        #     for j in range(n_bins):
+        #         if solver.Value(pack_in_bin[i, j]) == 1:
+        #             print(f'in bin {j+1}', end=' ')
+        #     print(f'that the top right corner coordinate (x, y) is ({solver.Value(r[i])}, {solver.Value(t[i])})')
+
         print(f'Number of bin used  : {sum(solver.Value(bin_is_used[i]) for i in range(n_bins))}')
         print(f'Total cost          : {solver.ObjectiveValue()}')
         print('----------------Statistics----------------')
