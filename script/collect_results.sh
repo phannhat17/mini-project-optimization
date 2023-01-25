@@ -37,7 +37,7 @@ for file in $files; do
     elif [ $mode == "CP2" ]; then 
         /usr/bin/time -f "Real running Time: %e" -ao $output_folder/$(basename $file).out  python solver_file/CP_model_solver/CP_model_2.py $file $time_limit > $output_folder/$(basename $file).out 
     elif [ $mode == "MIP" ]; then 
-        /usr/bin/time -f "Real running Time: %e" -ao $output_folder/$(basename $file).out  python solver_file/CP_model_solver/CP_model_1.py $file $time_limit > $output_folder/$(basename $file).out 
+        /usr/bin/time -f "Real running Time: %e" -ao $output_folder/$(basename $file).out  python solver_file/MIP_model.py $file $time_limit > $output_folder/$(basename $file).out 
     elif [ $mode == "HEU" ]; then 
         /usr/bin/time -f "Real running Time: %e" -ao $output_folder/$(basename $file).out  ./solver_file/Heuristic/Guillotine/heuristic_guillotine $file > $output_folder/$(basename $file).out 
     fi
