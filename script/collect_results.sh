@@ -8,16 +8,18 @@ time_limit=300                          # Time limit in second for the test
 
 input_data_folder=input_data/           # input data folder
 
-files=$(ls $input_data_folder/*.txt)    # List all *.txt files in input folder
-
 if [ -z "$mode" ]; then
     echo "Missing solver mode"
     exit 1
 else
     output_folder=results/result_${mode}_model                      # output folder for results file
     if [ $mode == "HEU" ]; then 
+        files=$(ls $input_data_folder/*.txt)    # List all *.txt files in input folder
+
         output_csv=$output_folder/results_${mode}_$attempt.csv      # csv file for results 
     else
+        files=$(ls $input_data_folder/*.txt | head -n 57)    # List 42 first *.txt files in input folder
+
         output_csv=$output_folder/results_${mode}_${time_limit}_$attempt.csv 
     fi
 
@@ -53,8 +55,11 @@ for file in $files; do
         fi
         echo "$value" | tr '\n' ',' >> $output_csv
     done
-
-    echo $time_limit | tr '\n' ',' >> $output_csv       # Write the time_limit to result file
+    if  [ $mode == "HEU" ]; then
+        echo "None" | tr '\n' ','>> $output_csv
+    else
+        echo $time_limit | tr '\n' ',' >> $output_csv       # Write the time_limit to result file
+    fi
 
     echo >> $output_csv                                 # Add new line in the results file
 
