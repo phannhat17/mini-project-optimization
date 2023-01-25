@@ -445,5 +445,5 @@ signed main(int argc, char* argv[]) {
     cout << "Time limit: "              << "None"       << endl;
     cout << "Running Time: ";
     cout.precision(20);
-    cout << float(clock() - start_timing)/CLOCKS_PER_SEC;
+    cout << float(clock() - start_timing)/CLOCKS_PER_SEC << endl;
 }
