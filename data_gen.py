@@ -61,6 +61,8 @@ for i in range(550, 1001, 50):
     else:
         genData(f'input_data/0{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
 
+for i in range(2000, 10001, 1000):
+    genData(f'input_data/{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
 
 
 

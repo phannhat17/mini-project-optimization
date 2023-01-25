@@ -17,4 +17,9 @@
 
 10 tests:
     550, 600, .., 950, 1000
+
+09 tests mainly for heuristic testing:
+    2000, 3000, ..., 10000
+
+All of the above numbers are number of package
 ```
