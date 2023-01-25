@@ -168,5 +168,3 @@ if __name__ == '__main__':
         print(f'Time limit          : {time_limit}')
         print(f'Running time        : {solver.WallTime() / 1000}')
     
-
-
