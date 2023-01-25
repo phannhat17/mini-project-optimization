@@ -49,4 +49,4 @@ n_packs, n_bins, n_bins_used, cost, status, solver_running_time, real_running_ti
 900,300,98,6618,None,,0.02,300,
 950,316,95,6147,None,,0.02,300,
 1000,333,102,6704,None,,0.03,300,
-7,3,2,300,None,,0.00,300,
+7,3,2,300,None,,0.00,300,
