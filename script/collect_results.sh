@@ -14,11 +14,14 @@ if [ -z "$mode" ]; then
     echo "Missing solver mode"
     exit 1
 else
-    output_folder=results/result_${mode}_model      # output folder for results file
+    output_folder=results/result_${mode}_model                                  # output folder for results file
+    if [ $mode == "HEU" ]; then 
+        output_csv=$output_folder/results_${mode}_$attempt.csv    # csv file for results 
+    else
+        output_csv=$output_folder/results_${mode}_${time_limit}_$attempt.csv 
+    fi
 
-    output_csv=$output_folder/results_${mode}_${time_limit}_$attempt.csv  # csv file for results 
-
-    mkdir -p $output_folder                         # Create output folder if it doesn't exist
+    mkdir -p $output_folder                                                     # Create output folder if it doesn't exist
 fi
 
 # Create the columns for the results file
