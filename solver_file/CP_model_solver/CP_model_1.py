@@ -160,6 +160,3 @@ if __name__ == "__main__":
 
     main_solver(file_path, time_limit)
     
-
-    
-
