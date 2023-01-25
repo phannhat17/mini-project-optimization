@@ -18,7 +18,7 @@ else
 
         output_csv=$output_folder/results_${mode}_$attempt.csv      # csv file for results 
     else
-        files=$(ls $input_data_folder/*.txt | head -n 57)    # List 42 first *.txt files in input folder
+        files=$(ls $input_data_folder/*.txt | head -n 58)    # List 57 first *.txt files in input folder
 
         output_csv=$output_folder/results_${mode}_${time_limit}_$attempt.csv 
     fi
