@@ -43,10 +43,7 @@ MAX_SZ_C = 20
 MAX_SZ_I = 10
 MAXC = 100
 
-for i in range(10, 30):
-    genData(f'input_data/00{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
-
-for i in range(35, 54, 2):
+for i in range(10, 55):
     genData(f'input_data/00{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
 
 for i in range(90, 351, 30):
