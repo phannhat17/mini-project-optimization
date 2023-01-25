@@ -21,6 +21,6 @@ Example:
 ./script/collect_results.sh MIP 1
 ```  
 The commmand above will collect the results created by `MIP solver` in the `1st attempt`  
-**Note:   
-- Read the script for more details 
-- Change the attempt number for each attempt or the results will rewrite each other**
+**Note:**   
+**- Read the script for more details**
+**- Change the attempt number for each attempt or the results will rewrite each other**
