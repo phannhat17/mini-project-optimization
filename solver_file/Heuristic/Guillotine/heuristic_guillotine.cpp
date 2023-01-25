@@ -135,8 +135,6 @@ vector <Free_Rectangles> spliting(Free_Rectangles rec, Items pack)
 // Merge two initial free_recs into a larger free_rec if possible
 void merge_rec(Bins &car)
 {
-    vector <Free_Rectangles> match_width, match_height;
-
     for(int i = 0; i < car.list_of_free_rec.size(); ++i)
     {
         Free_Rectangles first   = car.list_of_free_rec[i];
@@ -146,8 +144,8 @@ void merge_rec(Bins &car)
         // Loop to find a mergable free_rec for the rec i
         for(int j = 0; j < car.list_of_free_rec.size(); ++j)
         {
-            Free_Rectangles second  = car.list_of_free_rec[j];
             if(j == i) continue;
+            Free_Rectangles second  = car.list_of_free_rec[j];
             // Find the mergable free_rec with the same width
             if((first.width == second.width) && (first.corner_x == second.corner_x) && (second.corner_y == first.corner_y + first.height))
             {
@@ -156,7 +154,7 @@ void merge_rec(Bins &car)
                 break;
             }
             // Find the mergable free_rec with the same height
-            if((first.height == second.height) && (first.corner_y == second.corner_y) && (second.corner_x == first.corner_x + first.width))
+            if((first.height == second.height) && (first.    corner_y == second.corner_y) && (second.corner_x == first.corner_x + first.width))
             {
                 check_exist_height  = 1;
                 pos_check_height    = j;
@@ -175,9 +173,11 @@ void merge_rec(Bins &car)
             // Remove the two initial free_recs
             car.list_of_free_rec.erase(car.list_of_free_rec.begin() + pos_check_width);
             if(pos_check_width < i) --i;
-            car.list_of_free_rec.erase(car.list_of_free_rec.begin() + i), --i;
+            car.list_of_free_rec.erase(car.list_of_free_rec.begin() + i);
             // Add the merged free_rec
             car.list_of_free_rec.push_back(merged_rec);
+            //start the checking from begining
+            i = -1;
         }
 
         // Merge two free_rec with the same height
@@ -188,16 +188,21 @@ void merge_rec(Bins &car)
             merged_rec.height   = first.height;
             merged_rec.area     = merged_rec.width * merged_rec.height;
             merged_rec.corner_x = first.corner_x;
-            merged_rec.corner_y = first.corner_y;
+            merged_rec.corner_y = first.    corner_y;
             // Remove the two initial free_recs
             car.list_of_free_rec.erase(car.list_of_free_rec.begin() + pos_check_height);
-            if(pos_check_width < i) --i;
-            car.list_of_free_rec.erase(car.list_of_free_rec.begin() + i), --i;
+            if(pos_check_height < i) --i;
+            car.list_of_free_rec.erase(car.list_of_free_rec.begin() + i);
             // Add the merged free_rec
             car.list_of_free_rec.push_back(merged_rec);
+            //start the checking from begining
+            i = -1;
         }
     }
 }
+
+
+
 
 // Adding item into a bin at the bottom-left-corner of a free_rec
 void add_item(Bins &car, Items &pack, bool rotated, int x, int y)
