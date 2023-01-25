@@ -21,7 +21,7 @@ The input data format and how we generated them can be found [here](./input_data
 ├── license
 ├── README.md
 ├── results                 # contains results from solver
-│   
+│       ...
 ├── script                  # script file for collect result and analyze
 │   └── collect_results.sh
 └── solver_file
