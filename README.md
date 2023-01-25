@@ -10,6 +10,28 @@ The input data format and how we generated them can be found [here](./input_data
 - MIP model:
 - Heuristic: 
 
+## Folder structure
+```
+.
+├── CP_model.pdf            # how we model the problem
+├── data_gen.py             # input data generator
+├── input_data              # contains generated data
+│   ├── 0010.txt
+│   └── ...
+├── license
+├── README.md
+├── results                 # contains results from solver
+│   
+├── script                  # script file for collect result and analyze
+│   └── collect_results.sh
+└── solver_file
+    ├── CP_model_solver
+    │       ...
+    ├── Heuristic
+    │       ...
+    └── MIP_model.py
+```
+
 ## The results
 - The results for each model are shown in the `results` folder.
 - If you want to collect results by yourself, you can run the `collect_results` script by this command:
@@ -24,3 +46,5 @@ The commmand above will collect the results created by `MIP solver` in the `1st 
 **Note:**   
 **- Read the script for more details**  
 **- Change the attempt number for each attempt or the results will rewrite each other**
+
+
