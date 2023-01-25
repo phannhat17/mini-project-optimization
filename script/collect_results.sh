@@ -14,11 +14,11 @@ if [ -z "$mode" ]; then
 else
     output_folder=results/result_${mode}_model                      # output folder for results file
     if [ $mode == "HEU" ]; then 
-        files=$(ls $input_data_folder/*.txt)    # List all *.txt files in input folder
+        files=$(ls $input_data_folder/*.txt)                        # List all *.txt files in input folder
 
         output_csv=$output_folder/results_${mode}_$attempt.csv      # csv file for results 
     else
-        files=$(ls $input_data_folder/*.txt | head -n 58)    # List 57 first *.txt files in input folder
+        files=$(ls $input_data_folder/*.txt | head -n 58)           # List 57 first *.txt files in input folder
 
         output_csv=$output_folder/results_${mode}_${time_limit}_$attempt.csv 
     fi
@@ -61,7 +61,7 @@ for file in $files; do
         echo $time_limit | tr '\n' ',' >> $output_csv       # Write the time_limit to result file
     fi
 
-    echo >> $output_csv                                 # Add new line in the results file
+    echo >> $output_csv                                     # Add new line in the results file
 
-    rm $output_folder/$(basename $file).out             # Remove the temporary output file
+    rm $output_folder/$(basename $file).out                 # Remove the temporary output file
 done
