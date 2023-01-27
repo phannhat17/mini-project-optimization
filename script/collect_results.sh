@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mode=$1         # CP1, CP2, MIP, HEU1, HEU2, HEU
+mode=$1         # CP1, CP2, MIP, HEU_COMB, HEU_MAXREC, HEU_GUILL
 
 attempt=$2      # attempt
 
@@ -11,7 +11,7 @@ input_data_folder=input_data/           # input data folder
 if [ -z "$mode" ]; then
     echo "Missing solver mode"
     exit 1
-elif [[ ! " $mode " =~ " CP1 " && ! " $mode " =~ " CP2 " && ! " $mode " =~ " MIP " && ! " $mode " =~ " HEU1 " && ! " $mode " =~ " HEU2 " && ! " $mode " =~ " HEU " ]]; then
+elif [[ ! " $mode " =~ " CP1 " && ! " $mode " =~ " CP2 " && ! " $mode " =~ " MIP " && ! " $mode " =~ " HEU_COMB " && ! " $mode " =~ " HEU_GUILL " && ! " $mode " =~ " HEU_MAXREC " ]]; then
     echo "Invalid solver mode"
     exit 1  
 else
