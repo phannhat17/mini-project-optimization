@@ -17,13 +17,13 @@ elif [[ ! " $mode " =~ " CP1 " && ! " $mode " =~ " CP2 " && ! " $mode " =~ " MIP
 else
                        # output folder for results file
     if [ $mode == "HEU_COMB" ] || [ $mode == "HEU_GUILL" ] || [ $mode == "HEU_MAXREC" ]; then 
-        output_folder=results/result_HEU
+        output_folder=results/results_HEU
 
         files=$(ls $input_data_folder/*.txt)                        # List all *.txt files in input folder
 
         output_csv=results/result_HEU/results_${mode}_$attempt.csv      # csv file for results 
     else
-        output_folder=results/result_${mode}                     
+        output_folder=results/results_${mode}                     
 
         files=$(ls $input_data_folder/*.txt | head -n 58)           # List 58 first *.txt files in input folder
 
