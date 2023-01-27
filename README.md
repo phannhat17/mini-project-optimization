@@ -39,6 +39,8 @@ The input data format and how we generated them can be found [here](./input_data
 ```
 ./script/collect_results.sh {mode} {attempt}
 ```
+Available solver modes: `CP1`, `CP2`, `MIP`, `HEU_COMB`, `HEU_MAXREC`, `HEU_GUILL`
+
 Example:
 ```
 ./script/collect_results.sh MIP 1
