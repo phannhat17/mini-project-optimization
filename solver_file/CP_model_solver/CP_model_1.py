@@ -149,7 +149,7 @@ if __name__ == "__main__":
         file_path = sys.argv[1]
     except IndexError:
         # Default input file if file path is not specified
-        file_path = '../../input_data/0015.txt'
+        file_path = 'input_data/0015.txt'
     
     try:
         # Get input file path
