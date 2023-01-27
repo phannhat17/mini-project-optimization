@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mode=$1         # CP1, CP2, MIP, HEU
+mode=$1         # CP1, CP2, MIP, HEU1, HEU2, HEU
 
 attempt=$2      # attempt
 
@@ -11,13 +11,20 @@ input_data_folder=input_data/           # input data folder
 if [ -z "$mode" ]; then
     echo "Missing solver mode"
     exit 1
+elif [[ ! " $mode " =~ " CP1 " && ! " $mode " =~ " CP2 " && ! " $mode " =~ " MIP " && ! " $mode " =~ " HEU1 " && ! " $mode " =~ " HEU2 " && ! " $mode " =~ " HEU " ]]; then
+    echo "Invalid solver mode"
+    exit 1  
 else
-    output_folder=results/result_${mode}                     # output folder for results file
-    if [ $mode == "HEU" ]; then 
+                       # output folder for results file
+    if [ $mode == "HEU_COMB" ] || [ $mode == "HEU_GUILL" ] || [ $mode == "HEU_MAXREC" ]; then 
+        output_folder=results/result_HEU
+
         files=$(ls $input_data_folder/*.txt)                        # List all *.txt files in input folder
 
-        output_csv=$output_folder/results_${mode}_$attempt.csv      # csv file for results 
+        output_csv=results/result_HEU/results_${mode}_$attempt.csv      # csv file for results 
     else
+        output_folder=results/result_${mode}                     
+
         files=$(ls $input_data_folder/*.txt | head -n 58)           # List 58 first *.txt files in input folder
 
         output_csv=$output_folder/results_${mode}_${time_limit}_$attempt.csv 
@@ -40,8 +47,12 @@ for file in $files; do
         /usr/bin/time -f "Real running Time: %e" -ao $output_folder/$(basename $file).out  python solver_file/CP_model_solver/CP_model_2.py $file $time_limit > $output_folder/$(basename $file).out 
     elif [ $mode == "MIP" ]; then 
         /usr/bin/time -f "Real running Time: %e" -ao $output_folder/$(basename $file).out  python solver_file/MIP_model.py $file $time_limit > $output_folder/$(basename $file).out 
-    elif [ $mode == "HEU" ]; then 
+    elif [ $mode == "HEU_GUILL" ]; then 
         /usr/bin/time -f "Real running Time: %e" -ao $output_folder/$(basename $file).out  ./solver_file/Heuristic/Guillotine/heuristic_guillotine $file > $output_folder/$(basename $file).out 
+    elif [ $mode == "HEU_MAXREC" ]; then 
+        /usr/bin/time -f "Real running Time: %e" -ao $output_folder/$(basename $file).out  ./solver_file/Heuristic/MaxRec/heuristic_maxrec $file > $output_folder/$(basename $file).out 
+    elif [ $mode == "HEU_COMB" ]; then 
+        /usr/bin/time -f "Real running Time: %e" -ao $output_folder/$(basename $file).out  ./solver_file/Heuristic/Combined/heuristic_main $file > $output_folder/$(basename $file).out 
     fi
 
     # Get the input number of packages and number of bins from input file
