@@ -12,7 +12,7 @@ if [ -z "$mode" ]; then
     echo "Missing solver mode"
     exit 1
 else
-    output_folder=results/result_${mode}_model                      # output folder for results file
+    output_folder=results/result_${mode}                     # output folder for results file
     if [ $mode == "HEU" ]; then 
         files=$(ls $input_data_folder/*.txt)                        # List all *.txt files in input folder
 
