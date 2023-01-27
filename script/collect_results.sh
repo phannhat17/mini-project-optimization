@@ -21,7 +21,7 @@ else
 
         files=$(ls $input_data_folder/*.txt)                        # List all *.txt files in input folder
 
-        output_csv=results/result_HEU/results_${mode}_$attempt.csv      # csv file for results 
+        output_csv=$output_folder/results_${mode}_$attempt.csv      # csv file for results 
     else
         output_folder=results/results_${mode}                     
 
