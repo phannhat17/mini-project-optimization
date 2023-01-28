@@ -50,4 +50,4 @@ The commmand above will collect the results created by `MIP solver` in the `1st 
 **- Read the script for more details**  
 **- Change the attempt number for each attempt or the results will rewrite each other**
 
-
+ 
