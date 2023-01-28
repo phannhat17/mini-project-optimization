@@ -44,7 +44,7 @@ Example:
 ```
 ./script/collect_results.sh HEU_COMB 1
 ```  
-The commmand above will collect the results created by `MIP solver` in the `1st attempt`    
+The commmand above will collect the results created by [heuristic_main](/solver_file/Heuristic/Combined/heuristic_main) in the `1st attempt`    
 ![Example](./assets/example.gif)  
 **Note:**   
 **- Read the script for more details**  
