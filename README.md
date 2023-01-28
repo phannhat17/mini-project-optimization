@@ -42,9 +42,10 @@ Available solver modes: `CP1`, `CP2`, `MIP`, `HEU_COMB`, `HEU_MAXREC`, `HEU_GUIL
 
 Example:
 ```
-./script/collect_results.sh MIP 1
+./script/collect_results.sh HEU_COMB 1
 ```  
-The commmand above will collect the results created by `MIP solver` in the `1st attempt`  
+The commmand above will collect the results created by `MIP solver` in the `1st attempt`    
+![Example](./assets/example.gif)  
 **Note:**   
 **- Read the script for more details**  
 **- Change the attempt number for each attempt or the results will rewrite each other**
