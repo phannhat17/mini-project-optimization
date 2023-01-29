@@ -7,8 +7,7 @@ const int inf   = INT_MAX;
 
 /*----------------- DECLARATION -----------------*/
 int N_items, N_bins;
-int bin_used    = 0;
-int total_cost;
+int bin_used, total_cost;
 
 
 /*----------------- BUILD STRUCTURES FOR ITEMS -----------------*/
@@ -175,7 +174,7 @@ pair <pair <Free_Rectangles, int>, pair <bool, bool>> best_ranking(Bins car, Ite
 pair <int, int> calculate_solution()
 {
     pair <int, int> return_solution;
-    total_cost = 0;
+    total_cost = 0; bin_used = 0;
 
     // Calculate total number of used bin and total cost
     for(int j = 1; j <= N_bins; ++j)
