@@ -213,7 +213,7 @@ void add_item(Bins &car, Items &pack, bool rotated, int x, int y)
 // Build compare function for ranking
 bool compare_ranking_rec_BSS(pair <int, int> a, pair <int, int> b)
 {
-    if(a.first == b.first) return a.second > b.second;
+    if(a.first == b.first) return a.second < b.second;
     return a.first < b.first;
 }
 // Calculate score for the item when insert to a free_rec
