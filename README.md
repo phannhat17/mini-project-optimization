@@ -15,15 +15,20 @@ The input data format and how we generated them can be found [here](./input_data
 .
 ├── CP_model.pdf            # how we model the problem
 ├── data_gen.py             # input data generator
+├── assets
+├── figure                  # contains generated figures
+│   ├── generated_CP
+│   │   └── ...
+│   └── generated_HEU
+│       └── ...
 ├── input_data              # contains generated data
 │   └── ...
-├── license
-├── README.md
+├── presentation
 ├── results                 # contains results from solver
 │   └── ...
-├── script                  # script file for collect result and analyze
-│   └── collect_results.sh
-└── solver_file
+├── script                  # script file for collect result and gen figure
+│   └──
+└── solver_file             # contains solver files
     ├── CP_model_solver
     │   └── ...
     ├── Heuristic
