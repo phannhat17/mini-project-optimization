@@ -37,6 +37,7 @@ The input data format and how we generated them can be found [here](./input_data
 ```
 
 ## The results
+- Here we only collect the results based on **the number of bin used and total cost**.
 - The results for each model are shown in the `results` folder.
 - CP and MIP model solvers only receive input data up to **600 packages**   
 - Example colab notebook [here](https://colab.research.google.com/drive/1ouxqr2eeJTfJou74Oxw4Syih_zFGgm2p?usp=sharing)  
