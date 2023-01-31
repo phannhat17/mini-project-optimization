@@ -63,4 +63,4 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 ```
 ./script/gen_figure.sh {mode}
 ```
-**Note: Currently, the script can only generate figure for the CP and Heuristic solver**
+**Note: Currently, the script can only generate figure for the CP and Heuristic solver** 
