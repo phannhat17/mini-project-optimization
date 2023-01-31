@@ -58,7 +58,7 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 **- Read the script for more details**  
 **- Change the attempt number for each attempt or the results will rewrite each other**
 ## Figure
-- We have generated 12 figures for the results of CP solver **(because the running time is quite long for the large input data)** and all figures for Heuristic solver  
+- We have generated 16 figures (data from 7 to 24) for the results of CP solver **(because the running time is quite long for the large input data)** and all figures for Heuristic solver  
 - You can generate by running this command:  
 ```
 ./script/gen_figure.sh {mode}

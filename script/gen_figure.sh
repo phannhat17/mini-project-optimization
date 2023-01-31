@@ -16,11 +16,11 @@ else
 
     if [ $mode == "HEU" ]; then 
 
-        files=$(ls $input_data_folder/*.txt | head -n 51)           # List 51 first *.txt files in input folder
+        files=$(ls $input_data_folder/*.txt)           # List 51 first *.txt files in input folder
 
     else
 
-        files=$(ls $input_data_folder/*.txt | head -n 12)           # List 12 first *.txt files in input folder
+        files=$(ls $input_data_folder/*.txt | head -n 16)           # List 16 first *.txt files in input folder
 
     fi
 
