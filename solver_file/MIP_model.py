@@ -137,9 +137,12 @@ if __name__ == '__main__':
     if status == pywraplp.Solver.OPTIMAL or status == pywraplp.Solver.FEASIBLE:
         print('--------------Solution Found--------------')
         # for i in range(n):
-        #     print(f'put item {i+1} with rotation {Ro[i].solution_value()} in car {z[i].solution_value()} at {l[i].solution_value()} {b[i].solution_value()} -> {r[i].solution_value()} {t[i].solution_value()}')
-        print(f'Number of bin used  :',sum(y[m].solution_value() for m in range(k)))
-        # print(f'bin be used         :',*set(z[i].solution_value() for i in range(n)))
+        #     print(f'put item {i+1} with rotation {int(Ro[i].solution_value())}', end=' ') 
+        #     for j in range(k):
+        #         if x[i,j].solution_value() ==1:
+        #             print(f'in bin {j+1}', end=' ')
+        #     print(f'at {l[i].solution_value()} {b[i].solution_value()} -> {r[i].solution_value()} {t[i].solution_value()}')
+        print(f'Number of bin used  :',int(sum(y[m].solution_value() for m in range(k))))
         print(f'Total cost          : {solver.Objective().Value()}')
         print('----------------Statistics----------------')
         if status == pywraplp.Solver.OPTIMAL:
