@@ -84,4 +84,6 @@ After analysis, we get the result:
   
 **Note: CP and MIP only recived 58 test cases while HEURISTIC solver recived 75 test cases including some very large input**
 
+Example `number of packs vs cost MIP`:
+
 ![Example](./analyze/n_packs_vs_cost_MIP.png)
