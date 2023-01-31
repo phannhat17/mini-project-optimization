@@ -31,7 +31,7 @@ def get_data(input_path, output_path):
 
         for line in lines:
             pack = int(line.split('pack ')[1].split()[0])
-            bin_use = int(line.split('in bin ')[1][0])
+            bin_use = int(line.split('in bin ')[1].split()[0])
             if bin_use not in used_bins:
                 used_bins[bin_use] = [pack]
             else:
