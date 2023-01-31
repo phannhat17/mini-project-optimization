@@ -16,7 +16,7 @@ else
 
     if [ $mode == "HEU" ]; then 
 
-        files=$(ls $input_data_folder/*.txt)                        # List all *.txt files in input folder
+        files=$(ls $input_data_folder/*.txt | head -n 51)           # List all *.txt files in input folder
 
     else
 
