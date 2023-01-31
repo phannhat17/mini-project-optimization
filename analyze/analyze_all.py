@@ -9,13 +9,14 @@ for path in resuslt_path:
         cost = []
         data = f.readlines()
         data.pop(0)
+        temp = []
         for line in data:
-            if 'NO SOLUTION FOUND' in line:
-                data.remove(line)
-            else:
-                values = line.strip().split(",")
-                n_packs.append(int(values[0]))
-                cost.append(float(values[3]))
+            if 'NO SOLUTION FOUND' not in line:
+                temp.append(line)
+        for line in temp:
+            values = line.strip().split(",")
+            n_packs.append(int(values[0]))
+            cost.append(float(values[3]))
 
         plt.figure(figsize=(9, 9))
         plt.plot(n_packs, cost, ".")
@@ -23,15 +24,10 @@ for path in resuslt_path:
         plt.ylabel("total cost")
         plt.title("n_packs vs cost")
         if "CP" in path:
-            print("CP", len(data))
             plt.savefig('analyze/n_packs_vs_cost_CP.png')
         elif "MIP" in path:
-            print("MIP", len(data))
-
             plt.savefig('analyze/n_packs_vs_cost_MIP.png')
         else:
-            print("HEU", len(data))
-
             plt.savefig('analyze/n_packs_vs_cost_HEU.png')
 
     with open(path, "r") as f:
@@ -39,13 +35,14 @@ for path in resuslt_path:
         run_time = []
         data = f.readlines()
         data.pop(0)
+        temp = []
         for line in data:
-            if 'NO SOLUTION FOUND' in line:
-                data.remove(line)
-            else:
-                values = line.strip().split(",")
-                n_packs.append(int(values[0]))
-                run_time.append(float(values[6]))
+            if 'NO SOLUTION FOUND' not in line:
+                temp.append(line)
+        for line in temp:       
+            values = line.strip().split(",")
+            n_packs.append(int(values[0]))
+            run_time.append(float(values[6]))
 
         plt.figure(figsize=(9, 9))
         plt.plot(n_packs, run_time, ".")
