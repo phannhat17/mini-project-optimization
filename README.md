@@ -82,7 +82,7 @@ After analysis, we get the result:
 - MIP solver can solve **32/58** test cases
 - Heuristic solver can solve **all provided test cases**
   
-**Note: CP and MIP only recived 58 test cases while HEURISTIC solver recived 75 test cases including some very large input**
+**Note: CP and MIP only recieved 58 test cases while HEURISTIC solver recieved 75 test cases including some very large input**
 
 Example `number of packs vs cost MIP`:
 
