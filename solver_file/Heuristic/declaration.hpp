@@ -204,25 +204,39 @@ void checking_status()
 //                << "Corner x: " << pack.corner_x << ", Corner y: " << pack.corner_y << ", Rotated: " << pack.rotated << endl;
 //    }
 //    cout << "/*----------------- These are the bins -----------------*/" << endl;
+
+//    for(int j = 1; j <= N_bins; ++j)
+//    {
+//        if(bin[j].list_of_items.size() == 0)
+//        {
+//            continue;
+//        }
+//        cout << "/*----------------- Consider Bin: ------------------*/" << endl;
+//        cout << "Bin id: " << bin[j].id << endl;
+//        cout << "Bin width: " << bin[j].width << endl;
+//        cout << "Bin height: " << bin[j].height << endl;
+//        cout << "Bin cost: " << bin[j].cost << endl;
+//        cout << "Bin area: " << bin[j].area << endl;
+//        cout << "Bin remain area: " << bin[j].free_area << endl;
+//        cout << "/*----------------- List of items ------------------*/" << endl;
+//        for(auto pack : bin[j].list_of_items)
+//        {
+//            cout    << "ID: " << pack.id << ", Width: " << pack.width << ", Height: " << pack.height << ", "
+//                    << "Corner x: " << pack.corner_x << ", Corner y: " << pack.corner_y << ", Rotated: " << pack.rotated << endl;
+//        }
+//        cout << endl << endl;
+//    }
+
+    // Formated output for collecting data
     for(int j = 1; j <= N_bins; ++j)
     {
-        if(bin[j].list_of_items.size() == 0)
-        {
-            continue;
-        }
-        cout << "/*----------------- Consider Bin: ------------------*/" << endl;
-        cout << "Bin id: " << bin[j].id << endl;
-        cout << "Bin width: " << bin[j].width << endl;
-        cout << "Bin height: " << bin[j].height << endl;
-        cout << "Bin cost: " << bin[j].cost << endl;
-        cout << "Bin area: " << bin[j].area << endl;
-        cout << "Bin remain area: " << bin[j].free_area << endl;
-        cout << "/*----------------- List of items ------------------*/" << endl;
         for(auto pack : bin[j].list_of_items)
         {
-            cout    << "ID: " << pack.id << ", Width: " << pack.width << ", Height: " << pack.height << ", "
-                    << "Corner x: " << pack.corner_x << ", Corner y: " << pack.corner_y << ", Rotated: " << pack.rotated << endl;
+            if(pack.rotated)    cout << "Rotate pack " << pack.id << " and put";
+            else                cout << "Put pack " << pack.id;
+            cout    << " in bin " << bin[j].id
+                    << " that the top right corner coordinate (x, y) is ("
+                    << pack.corner_x + pack.width << ", " << pack.corner_y + pack.height << ")" << endl;
         }
-        cout << endl << endl;
     }
 }

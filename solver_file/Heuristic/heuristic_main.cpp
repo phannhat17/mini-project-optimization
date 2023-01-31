@@ -86,14 +86,16 @@ void Solve()
 /*----------------- PRINT OUTPUT -----------------*/
 void Print()
 {
-    // Print the solution
+    // Print the input sizes
     cout << "Number of item given: "    << N_items      << endl;
     cout << "Number of bin given: "     << N_bins       << endl;
-    cout << "Number of bin used: "      << bin_used     << endl;
-    cout << "Total cost: "              << total_cost   << endl;
 
     // Uncomment for more detailed information of packed items in each used bin
-//    checking_status();
+    checking_status();
+
+    // Print the solution
+    cout << "Number of bin used: "      << bin_used     << endl;
+    cout << "Total cost: "              << total_cost   << endl;
 }
 
 
