@@ -8,7 +8,7 @@ The input data format and how we generated them can be found [here](./input_data
 ## Modeling the problem
 - CP model: Details are written in [this file](CP_model.pdf)
 - MIP model:
-- Heuristic: 
+- Heuristic: Details are written in [this file](Heuristic.pdf)
 
 ## Folder structure
 ```
