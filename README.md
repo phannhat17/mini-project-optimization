@@ -56,4 +56,4 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 ```
 ./script/gen_figure.sh HEU
 ```
-Read the script for more details
+**Note: Currently, the script can only generate figure for the CP and Heuristic solver**
