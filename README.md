@@ -60,6 +60,6 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 - We have generated 12 figures for the results of CP solver **(because the running time is quite long for the large input data)** and all figures for Heuristic solver  
 - You can generate by running this command:
 ```
-./script/gen_figure.sh HEU
+./script/gen_figure.sh {mode}
 ```
 **Note: Currently, the script can only generate figure for the CP and Heuristic solver**
