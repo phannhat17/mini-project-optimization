@@ -13,6 +13,7 @@ The input data format and how we generated them can be found [here](./input_data
 ## Folder structure
 ```
 .
+├── analyze                 # contains some analysis information
 ├── CP_model.pdf            # how we model the problem
 ├── data_gen.py             # input data generator
 ├── assets
@@ -40,6 +41,7 @@ The input data format and how we generated them can be found [here](./input_data
 ## Results
 Here we are only collecting results based on **number of bins used and total cost** so while collecting we omitted the code that prints out how the packages are sorted into the bins **(this affects quite a bit the actual runtime of the solver)**.
 - The results for each model are shown in the `results` folder.
+- The overview of the results can be found [here](./results/results.pdf)
 - CP and MIP model solvers only receive input data up to **600 packages**   
 - Example colab notebook [here](https://colab.research.google.com/drive/1ouxqr2eeJTfJou74Oxw4Syih_zFGgm2p?usp=sharing)    
 
