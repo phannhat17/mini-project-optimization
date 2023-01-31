@@ -15,7 +15,6 @@ elif [[ ! "$mode" =~ "CP1" && ! "$mode" =~ "CP2" && ! "$mode" =~ "MIP" && ! "$mo
     echo "Invalid solver mode"
     exit 1  
 else
-                       # output folder for results file
     if [ $mode == "HEU" ]; then 
         output_folder=results/results_${mode} 
 
