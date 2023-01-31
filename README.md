@@ -34,8 +34,8 @@ The input data format and how we generated them can be found [here](./input_data
 ## The results
 - The results for each model are shown in the `results` folder.
 - CP and MIP model solvers only receive input data up to **600 packages**   
+- Example colab notebook [here](https://colab.research.google.com/drive/1ouxqr2eeJTfJou74Oxw4Syih_zFGgm2p?usp=sharing)  
 - If you want to collect results by yourself, you can run the `collect_results` script by this command:
-- Example colab notebook [here](https://colab.research.google.com/drive/1ouxqr2eeJTfJou74Oxw4Syih_zFGgm2p?usp=sharing)
 ```
 ./script/collect_results.sh {mode} {attempt}
 ```
@@ -50,5 +50,10 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 **Note:**   
 **- Read the script for more details**  
 **- Change the attempt number for each attempt or the results will rewrite each other**
-
- 
+## Figure
+- We have generated 12 figures for the results of CP solver (because the running time is quite long for the large input data) and all figures for Heuristic solver  
+- You can generate by running this command:
+```
+./script/gen_figure.sh HEU
+```
+Read the script for more details
