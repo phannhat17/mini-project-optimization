@@ -11,7 +11,7 @@ input_data_folder=input_data/           # input data folder
 if [ -z "$mode" ]; then
     echo "Missing solver mode"
     exit 1
-elif [[ ! " $mode " =~ " CP1 " && ! " $mode " =~ " CP2 " && ! " $mode " =~ " MIP " && ! " $mode " =~ " HEU " ]]; then
+elif [[ ! "$mode" =~ "CP1" && ! "$mode" =~ "CP2" && ! "$mode" =~ "MIP" && ! "$mode" =~ "HEU" ]]; then
     echo "Invalid solver mode"
     exit 1  
 else
