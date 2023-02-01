@@ -86,4 +86,4 @@ After analysis, we get the result:
 
 Example `number of packs vs cost MIP`:
 
-![Example](./analyze/n_packs_vs_cost_MIP.png)
+![Example](./analyze/compare_number_success.png)
