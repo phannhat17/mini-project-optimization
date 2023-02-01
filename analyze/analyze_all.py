@@ -60,7 +60,7 @@ fig2.legend(labels=labels2, loc='lower center', bbox_to_anchor=(0.5, 0.3))
 plt.savefig('analyze/percentage.png')
 
 
-fig3, ax3 = plt.subplots(figsize=(22, 10))
+fig3, ax3 = plt.subplots(figsize=(15, 9))
 ax3.plot(n_packs[0], cost[0], "-", label = "CP")
 ax3.plot(n_packs[2][:58], cost[2][:58], "-", label = "Heuristic")
 axins = ax3.inset_axes([0.55, 0.05, 0.4, 0.4])
