@@ -8,6 +8,7 @@ fail_tests = []
 n_packs = []
 cost = []
 
+# success and fail tests
 for path in resuslt_path:
     with open(path, "r") as f:
         _n_packs=[]
@@ -38,7 +39,7 @@ ax1.legend()
 plt.savefig('analyze/compare_number_success.png')
 
 
-
+# success and fail percentage
 labels2 = ['Success', 'Fail']
     
 fracs = []
@@ -48,6 +49,7 @@ for i in range(len(success_tests)):
     fracs.append([
         ss_frac, f_frac
     ])
+
 
 fig2, axs = plt.subplots(1, 2, figsize=(8, 8))
 
@@ -60,6 +62,7 @@ fig2.legend(labels=labels2, loc='lower center', bbox_to_anchor=(0.5, 0.3))
 plt.savefig('analyze/percentage.png')
 
 
+# compare exact vs heuristics
 fig3, ax3 = plt.subplots(figsize=(15, 9))
 ax3.plot(n_packs[0], cost[0], "-", label = "CP")
 ax3.plot(n_packs[2][:58], cost[2][:58], "-", label = "Heuristic")
@@ -67,14 +70,30 @@ axins = ax3.inset_axes([0.55, 0.05, 0.4, 0.4])
 axins.plot(n_packs[0][:47], cost[0][:47], "-")
 axins.plot(n_packs[2][:47], cost[2][:47], "-")
 
-# sub region of the original image
 x1, x2, y1, y2 = 3, 61, 0, 630
 axins.set_xlim(x1, x2)
 axins.set_ylim(y1, y2)
 axins.set_xticklabels([])
 axins.set_yticklabels([])
 ax3.indicate_inset_zoom(axins)
+
 ax3.set_ylabel('Total cost')
 ax3.set_xlabel('Number of packs')
 plt.legend()
 plt.savefig('analyze/compare_exact_heuristic.png')
+
+
+# zoomed in n_packs < 100 compare exact vs heuristics
+fig4, ax4 = plt.subplots(figsize=(10, 6))
+ax4.plot(n_packs[0][:47], cost[0][:47], "-", label = "CP")
+ax4.plot(n_packs[2][:47], cost[2][:47], "-", label = "Heuristic")
+
+ax4.set_ylabel('Total cost')
+ax4.set_xlabel('Number of packs')
+plt.legend()
+plt.savefig('analyze/zoomed_compare_exact_heuristic.png')
+
+
+
+
+
