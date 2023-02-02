@@ -103,11 +103,11 @@ def main_solver(file_path, time_limit):
  
     # Find which bin has been used               
     for j in range(n_bins):
-        b = model.NewBoolVar('b')
-        model.Add(sum(pack_in_bin[i, j] for i in range(n_packs)) == 0).OnlyEnforceIf(b)
-        model.Add(bin_is_used[j] == 0).OnlyEnforceIf(b)
-        model.Add(sum(pack_in_bin[i, j] for i in range(n_packs)) != 0).OnlyEnforceIf(b.Not())
-        model.Add(bin_is_used[j] == 1).OnlyEnforceIf(b.Not())
+        b1 = model.NewBoolVar('b')
+        model.Add(sum(pack_in_bin[i, j] for i in range(n_packs)) == 0).OnlyEnforceIf(b1)
+        model.Add(bin_is_used[j] == 0).OnlyEnforceIf(b1)
+        model.Add(sum(pack_in_bin[i, j] for i in range(n_packs)) != 0).OnlyEnforceIf(b1.Not())
+        model.Add(bin_is_used[j] == 1).OnlyEnforceIf(b1.Not())
 
     # Objective function
     cost = sum(bin_is_used[j] * bins[j][2] for j in range(n_bins))
