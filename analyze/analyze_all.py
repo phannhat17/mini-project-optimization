@@ -7,12 +7,14 @@ success_tests = []
 fail_tests = []
 n_packs = []
 cost = []
+run_time = []
 
-# success and fail tests
+# get data
 for path in resuslt_path:
     with open(path, "r") as f:
         _n_packs=[]
         _cost=[]
+        _run_time=[]
         data = f.readlines()
         data.pop(0)
         remove_fail = []
@@ -23,11 +25,15 @@ for path in resuslt_path:
             values = line.strip().split(",")
             _n_packs.append(int(values[0]))
             _cost.append(float(values[3]))
+            _run_time.append(float(values[6]))
         n_packs.append(_n_packs)
         cost.append(_cost)
+        run_time.append(_run_time)
         success_tests.append(len(remove_fail))
         fail_tests.append(len(data)-len(remove_fail))
 
+
+# success and fail tests
 fig1, ax1 = plt.subplots(figsize=(8, 8))
 
 ax1.bar(labels, success_tests, 0.5, label='Success tests')
@@ -94,6 +100,16 @@ plt.legend()
 plt.savefig('analyze/zoomed_compare_exact_heuristic.png')
 
 
+
+# compare run time of fisrt 25 input
+fig5, ax5 = plt.subplots(figsize=(10,5))
+ax5.plot(n_packs[0][:25], run_time[0][:25], "-", label = "CP")
+ax5.plot(n_packs[1][:25], run_time[1][:25], "-", label = "MIP")
+ax5.plot(n_packs[2][:25], run_time[2][:25], "-", label = "Heuristic")
+ax5.set_ylabel('Run time')
+ax5.set_xlabel('Number of packs')
+plt.legend()
+plt.savefig('analyze/compare_run_time_heuristic.png')
 
 
 
