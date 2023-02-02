@@ -15,7 +15,6 @@ The input data format and how we generated them can be found [here](./input_data
 .
 ├── analyze                 # contains some analysis information
 ├── CP_model.pdf            # how we model the problem
-├── data_gen.py             # input data generator
 ├── assets
 ├── figure                  # contains generated figures
 │   ├── generated_CP
