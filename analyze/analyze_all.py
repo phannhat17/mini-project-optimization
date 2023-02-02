@@ -86,7 +86,7 @@ ax3.indicate_inset_zoom(axins)
 ax3.set_ylabel('Total cost')
 ax3.set_xlabel('Number of packs')
 plt.legend()
-plt.savefig('analyze/compare_exact_heuristic.png')
+plt.savefig('analyze/compare_cost_exact_heuristic.png')
 
 
 # zoomed in n_packs < 100 compare exact vs heuristics
@@ -97,7 +97,7 @@ ax4.plot(n_packs[2][:47], cost[2][:47], "-", label = "Heuristic")
 ax4.set_ylabel('Total cost')
 ax4.set_xlabel('Number of packs')
 plt.legend()
-plt.savefig('analyze/zoomed_compare_exact_heuristic.png')
+plt.savefig('analyze/zoomed_compare_cost_exact_heuristic.png')
 
 
 
@@ -109,7 +109,7 @@ ax5.plot(n_packs[2][:25], run_time[2][:25], "-", label = "Heuristic")
 ax5.set_ylabel('Run time')
 ax5.set_xlabel('Number of packs')
 plt.legend()
-plt.savefig('analyze/compare_run_time_heuristic.png')
+plt.savefig('analyze/compare_first_25_run_time.png')
 
 
 
