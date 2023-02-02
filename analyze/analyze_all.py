@@ -33,41 +33,6 @@ for path in resuslt_path:
         fail_tests.append(len(data)-len(remove_fail))
 
 
-# success and fail tests
-fig1, ax1 = plt.subplots(figsize=(8, 8))
-
-ax1.bar(labels, success_tests, 0.5, label='Success tests')
-ax1.bar(labels, fail_tests, 0.5, bottom=success_tests, label='Fail tests')
-
-ax1.set_ylim([0, success_tests[2] + fail_tests[2] + 10])
-ax1.set_ylabel('Tests')
-ax1.legend()
-plt.savefig('analyze/compare_number_success.png')
-
-
-# success and fail percentage
-labels2 = ['Success', 'Fail']
-    
-fracs = []
-for i in range(len(success_tests)):
-    ss_frac = round(100*success_tests[i]/(success_tests[i]+fail_tests[i]),2)
-    f_frac = round(100-ss_frac,2)
-    fracs.append([
-        ss_frac, f_frac
-    ])
-
-
-fig2, axs = plt.subplots(1, 2, figsize=(8, 8))
-
-axs[0].pie(fracs[0], autopct='%1.1f%%', radius=1.2)
-axs[0].set_title('CP')
-axs[1].pie(fracs[1], autopct='%1.1f%%', radius=1.2)
-axs[1].set_title('MIP')
-fig2.legend(labels=labels2, loc='lower center', bbox_to_anchor=(0.5, 0.3))
-
-plt.savefig('analyze/percentage.png')
-
-
 # compare exact vs heuristics
 fig3, ax3 = plt.subplots(figsize=(15, 9))
 ax3.plot(n_packs[0], cost[0], "-", label = "CP")
