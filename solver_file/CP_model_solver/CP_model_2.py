@@ -27,6 +27,8 @@ def main_solver(file_path, time_limit):
     n_packs, n_bins, packs, bins = read_input(file_path)
     max_width = max(x[0] for x in bins)
     max_height = max(x[1] for x in bins)
+    max_pack_width = max(x[0] for x in packs)
+    max_pack_height = max(x[1] for x in packs)
     
     # Creates the model
     model = cp_model.CpModel()
@@ -34,17 +36,17 @@ def main_solver(file_path, time_limit):
     # 
     # Variables
     # 
-    # pack_in_bin[i, j] = 1 iff item i is packed in bin j.
     pack_in_bin = {}
+    rotate = []
     for i in range(n_packs):
+        # rotate[i] = 1 iff item i is rotated
+        rotate.append(model.NewBoolVar(f'package_{i}_rotated'))
         for j in range(n_bins):
+            # pack_in_bin[i, j] = 1 iff item i is packed in bin j.
             pack_in_bin[i, j] = model.NewBoolVar(f'pack_{i}_in_bin_{j}')
 
     # bin_is_used[j] = 1 iff bin j has been used.
     bin_is_used = [model.NewBoolVar(f'bin_{j}_is_used)') for j in range(n_bins)]
-
-    # rotate[i] = 1 iff item i is rotated
-    rotate = [model.NewBoolVar(f'package_{i}_rotated') for i in range(n_packs)]
 
     # Width and height of each pack
     width = []
@@ -53,8 +55,8 @@ def main_solver(file_path, time_limit):
     x = []
     y = [] 
     for i in range(n_packs):
-        width.append(model.NewIntVar(0, max_width, f'width_{i}'))
-        height.append(model.NewIntVar(0, max_height, f'height_{i}'))
+        width.append(model.NewIntVar(0, max_pack_width, f'width_{i}'))
+        height.append(model.NewIntVar(0, max_pack_height, f'height_{i}'))
 
         x.append(model.NewIntVar(0, max_width, f'x_{i}'))
         y.append(model.NewIntVar(0, max_height, f'y_{i}'))
@@ -83,7 +85,7 @@ def main_solver(file_path, time_limit):
             model.Add(y[i] >= height[i]).OnlyEnforceIf(pack_in_bin[i, j])            
 
     # If 2 pack in the same bin they cannot overlap
-    for i in range(n_packs):
+    for i in range(n_packs-1):
         for k in range(i+1, n_packs):
             a1 = model.NewBoolVar('a1')        
             model.Add(x[i] <= x[k] - width[k]).OnlyEnforceIf(a1)
