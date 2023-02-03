@@ -20,7 +20,7 @@ else
 
     else
 
-        files=$(ls $input_data_folder/*.txt | head -n 16)           # List 16 first *.txt files in input folder
+        files=$(ls $input_data_folder/*.txt | head -n 13)           # List 16 first *.txt files in input folder
 
     fi
 
