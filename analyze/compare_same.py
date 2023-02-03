@@ -47,7 +47,7 @@ axins.set_yticklabels([])
 ax1.indicate_inset_zoom(axins)
 
 ax1.set_ylabel('Cost')
-ax1.set_xlabel('Number of packs')
+ax1.set_xlabel('Number of items')
 plt.legend()
 plt.savefig('analyze/CP1_1_vs_CP1_2.png')
 
@@ -68,7 +68,7 @@ axins1.set_yticklabels([])
 ax2.indicate_inset_zoom(axins1)
 
 ax2.set_ylabel('Cost')
-ax2.set_xlabel('Number of packs')
+ax2.set_xlabel('Number of items')
 plt.legend()
 plt.savefig('analyze/CP2_1_vs_CP2_2.png')
 
@@ -91,7 +91,7 @@ axins2.set_yticklabels([])
 ax3.indicate_inset_zoom(axins2)
 
 ax3.set_ylabel('Cost')
-ax3.set_xlabel('Number of packs')
+ax3.set_xlabel('Number of items')
 plt.legend()
 plt.savefig('analyze/CP1_2_vs_CP2_2.png')
 
@@ -101,6 +101,6 @@ ax4.plot(n_packs[4][:41], cost[4][:41], "-", label = "MIP1_2")
 ax4.plot(n_packs[5][:41], cost[5][:41], "-", label = "MIP2_2")
 
 ax3.set_ylabel('Cost')
-ax3.set_xlabel('Number of packs')
+ax3.set_xlabel('Number of items')
 plt.legend()
 plt.savefig('analyze/MIP1_2_vs_MIP2_2.png')
