@@ -44,22 +44,22 @@ MAX_SZ_I = 10
 MAXC = 100
 
 for i in range(10, 55):
-    genData(f'00{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
+    genData(f'00{i}.txt', i, i, MAX_SZ_C, MAX_SZ_I, MAXC)
 
-for i in range(90, 351, 30):
+for i in range(90, 361, 30):
     if i < 100:
-        genData(f'00{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
+        genData(f'00{i}.txt', i, i, MAX_SZ_C, MAX_SZ_I, MAXC)
     else:
-        genData(f'0{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
+        genData(f'0{i}.txt', i, i, MAX_SZ_C, MAX_SZ_I, MAXC)
 
 for i in range(550, 1001, 50):
     if i == 1000:
-        genData(f'{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
+        genData(f'{i}.txt', i, i, MAX_SZ_C, MAX_SZ_I, MAXC)
     else:
-        genData(f'0{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
+        genData(f'0{i}.txt', i, i, MAX_SZ_C, MAX_SZ_I, MAXC)
 
 for i in range(2000, 10001, 1000):
-    genData(f'{i}.txt', i, i//3, MAX_SZ_C, MAX_SZ_I, MAXC)
+    genData(f'{i}.txt', i, i, MAX_SZ_C, MAX_SZ_I, MAXC)
 
 
 
