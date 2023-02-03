@@ -1,8 +1,7 @@
 import matplotlib.pyplot as plt
 
-resuslt_path = ["results/results_CP1/results_CP1_300_1.csv", "results/results_MIP/results_MIP_300_1.csv", "results/results_HEU/results_HEU_1.csv"]
+resuslt_path = ["results/results_CP2/results_CP2_300_2.csv", "results/results_MIP/results_MIP_300_1.csv", "results/results_HEU/results_HEU_1.csv"]
 
-labels = ['CP', 'MIP', 'HEURISTIC']
 success_tests = []
 fail_tests = []
 n_packs = []
@@ -35,7 +34,7 @@ for path in resuslt_path:
 
 # compare exact vs heuristics
 fig3, ax3 = plt.subplots(figsize=(15, 9))
-ax3.plot(n_packs[0], cost[0], "-", label = "CP")
+ax3.plot(n_packs[0], cost[0], "-", label = "CP2")
 ax3.plot(n_packs[2][:58], cost[2][:58], "-", label = "Heuristic")
 axins = ax3.inset_axes([0.55, 0.05, 0.4, 0.4])
 axins.plot(n_packs[0][:47], cost[0][:47], "-")
@@ -56,7 +55,7 @@ plt.savefig('analyze/compare_cost_exact_heuristic.png')
 
 # zoomed in n_packs < 100 compare exact vs heuristics
 fig4, ax4 = plt.subplots(figsize=(10, 6))
-ax4.plot(n_packs[0][:47], cost[0][:47], "-", label = "CP")
+ax4.plot(n_packs[0][:47], cost[0][:47], "-", label = "CP2")
 ax4.plot(n_packs[2][:47], cost[2][:47], "-", label = "Heuristic")
 
 ax4.set_ylabel('Total cost')
