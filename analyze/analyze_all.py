@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-resuslt_path = ["results/results_CP1/results_CP1_300_2.csv", "results/results_CP2/results_CP2_300_2.csv", "results/results_MIP/results_MIP_300_1.csv", "results/results_HEU/results_HEU_1.csv"]
+resuslt_path = ["results/results_CP1/results_CP1_300_2.csv", "results/results_CP2/results_CP2_300_1.csv", "results/results_MIP/results_MIP_300_1.csv", "results/results_HEU/results_HEU_1.csv"]
 
 success_tests = []
 fail_tests = []
@@ -59,14 +59,14 @@ plt.savefig('analyze/compare_cost_all.png')
 
 
 # zoomed in n_packs < 100 compare exact vs heuristics
-fig, ax = plt.subplots(figsize=(10, 10))
+fig, ax = plt.subplots(figsize=(15, 9))
 ax.plot(n_packs[0][:47], cost[0][:47], "-", label = "CP1")
 ax.plot(n_packs[1][:47], cost[1][:47], "-", label = "CP2")
 ax.plot(n_packs[2][:47], cost[2][:47], "-", label = "MIP")
 ax.plot(n_packs[3][:47], cost[3][:47], "-", label = "Heuristic")
-ax.set_title('Zoom Exact vs Heuristics cost (lower is better)')
 ax.set_ylabel('Total cost')
 ax.set_xlabel('Number of items')
+ax.set_ylim(0,620)
 plt.legend()
 plt.savefig('analyze/zoomed_compare_cost_all.png')
 
