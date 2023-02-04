@@ -78,4 +78,4 @@ You can generate by running this command:
 
 ## Analysis
 
-![Example](./analyze/compare_first_25_run_time.png)
+![Example](./analyze/compare_run_time_all_first_25_test.png)
