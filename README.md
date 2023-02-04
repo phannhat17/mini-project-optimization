@@ -1,7 +1,7 @@
 # Multiple-type, two-dimensional finite bin packing problem
 This is a mini project for topic 3 in Fundamental of Optimization course of SoICT - HUST
 ## Problem
-There are `K` trucks `1,2,...,K` for transporting `N` packages of `1, 2, ..., N`. Trucks have a container size of `Wk * Lk`. Each package `I` has size `wi * li`. Packages that are placed in same container must not overlap. Assume that the number K can be large, leading to a large number of trucks that are not being used. The cost of using truck `k` is `ck`. Find a way to put these package in the trucks so that **the total cost is minimal**.  
+There are `K` trucks `1, 2,..., K` for transporting `N` packages of `1, 2, ..., N`. Each truck has a container size of `Wk * Hk`. The dimensions of each package `I` are `wi * hi`. Packages that are placed in the same container must not overlap. Assume that the number K can be large, leading to a large number of trucks that are not being used. `Ck` is the cost of using truck `k`. Find a way to put all the packages in the trucks so that **the total cost is minimal**.  
 
 The input data format and how we generated them can be found [here](./input_data/README.md) 
 
@@ -41,13 +41,13 @@ The input data format and how we generated them can be found [here](./input_data
 ```
 
 ## Results
-Here we are only collecting results based on **number of bins used and total cost** so while collecting we omitted the code that prints out how the packages are sorted into the bins **(this affects quite a bit the actual runtime of the solver)**.
+Here, we just need **the number of used bins and the total cost**, so for the real running time results, we omitted the printing code of the detailed packing methods **(this affects quite a bit the actual runtime of the solver)**.
 - The results for each model are shown in the `results` folder.
-- The overview of the results can be found [here](./results/results.pdf)
+- An overview of the results can be found [here](./results/results.pdf)
 - CP and MIP model solvers only receive input data up to **600 packages**   
-- You can use google colab to run this project like [this](https://colab.research.google.com/drive/1ouxqr2eeJTfJou74Oxw4Syih_zFGgm2p?usp=sharing)    
+- You can use google colab to run our project like [this](https://colab.research.google.com/drive/1ouxqr2eeJTfJou74Oxw4Syih_zFGgm2p?usp=sharing)    
 
-If you want to collect results by yourself, you can run the `collect_results` script by this command in the **root dir** of this repository:
+If you want to collect results by yourself, you can run the `collect_results` script by this command in the **root dir** of the repository:
 ```
 ./script/collect_results.sh {mode} {attempt}
 ```
@@ -68,21 +68,21 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 ## Analysis
 - CP cannot handle data sets larger than 240. 
 - MIP cannot handle data sets larger than 44.
-- Heuristic can handle all test cases (the largest test size being 10,000).
+- Heuristic can handle all test cases (the largest test size is 10,000).
 
 **Comparing results (total cost):**
 - MIP gives the **worst** results.
 - CP1 and CP2 give **nearly equivalent** results, but with larger data sets, CP2 gives better results.
-- Heuristic gives really good results, with tests of size <100 it is still a bit inferior to CP, but for all other tests it is significantly better than CP.
+- Heuristic gives really good results, with tests of size <100 it is still a bit inferior to CP, but for all other tests it is significantly better.
 
 ![Cost](./analyze/compare_cost_all.png)
 ![Cost](./analyze/zoomed_compare_cost_all.png)
 
 **Comparing run time:**
 
-- MIP reaches the time limit for all tests with size >= 15.
-- CP reaches the time limit for all tests with size >= 22.
-- Heuristic has a very short run time, mostly under 1 second even for test size 10,000 it takes only about 5 seconds to get the result.
+- MIP reaches the time limit of 300 seconds for all tests with size >= 15.
+- CP reaches the time limit of 300 seconds for all tests with size >= 22.
+- Heuristic has a very short run time, mostly under 1 second; even for a test size of 10,000, it just takes about 5 seconds to provide the result.
 
 ![Example](./analyze/compare_run_time_all_first_25_test.png)
 
@@ -93,9 +93,9 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 - Heuristic gives the best results in both cost and run time.
 
 ## Figure
-We have generated 13 figures (data from 7 to 24) for the results of CP solver **(because the running time is quite long for the large input data)** and all figures for Heuristic solver (No MIP because it take so long)    
+We have generated 13 figures **(just data sizes from 7 to 24; larger ones are quite slow)** for the results of the CP solver and all figures for the Heuristic solver (none for the MIP due to its long running time).    
   
-You can generate by running this command:  
+You can generate with this command:  
 ```
 ./script/gen_figure.sh {mode}
 ```
