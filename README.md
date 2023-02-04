@@ -70,7 +70,7 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 - MIP cannot handle data sets larger than 44.
 - Heuristic can handle all test cases (the largest test size being 10,000).
 
-Comparing results (total cost):
+**Comparing results (total cost):**
 - MIP gives the **worst** results.
 - CP1 and CP2 give **nearly equivalent** results, but with larger data sets, CP2 gives better results.
 - Heuristic gives really good results, with tests of size <100 it is still a bit inferior to CP, but for all other tests it is significantly better than CP.
@@ -78,7 +78,7 @@ Comparing results (total cost):
 ![Cost](./analyze/compare_cost_all.png)
 ![Cost](./analyze/zoomed_compare_cost_all.png)
 
-Comparing run time:
+**Comparing run time:**
 
 - MIP reaches the time limit for all tests with size >= 15.
 - CP reaches the time limit for all tests with size >= 22.
@@ -86,7 +86,7 @@ Comparing run time:
 
 ![Example](./analyze/compare_run_time_all_first_25_test.png)
 
-Therefore,
+**Therefore:**
 
 - MIP is not good in terms of results and run time,
 - CP is better than MIP, with better results and faster run time (in some early tests),
