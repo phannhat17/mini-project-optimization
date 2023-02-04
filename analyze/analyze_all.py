@@ -53,7 +53,7 @@ ax.indicate_inset_zoom(axins)
 
 ax.set_ylabel('Total cost')
 ax.set_xlabel('Test size')
-
+plt.title('Total cost (lower is better)')
 plt.legend()
 plt.savefig('analyze/compare_cost_all.png')
 
@@ -64,9 +64,11 @@ ax.plot(n_packs[0][:47], cost[0][:47], "-", label = "CP1")
 ax.plot(n_packs[1][:47], cost[1][:47], "-", label = "CP2")
 ax.plot(n_packs[2][:47], cost[2][:47], "-", label = "MIP")
 ax.plot(n_packs[3][:47], cost[3][:47], "-", label = "Heuristic")
+
 ax.set_ylabel('Total cost')
 ax.set_xlabel('Test size')
 ax.set_ylim(0,620)
+plt.title('Total cost (lower is better)')
 plt.legend()
 plt.savefig('analyze/zoomed_compare_cost_all.png')
 
@@ -94,7 +96,7 @@ ax.indicate_inset_zoom(axins)
 
 ax.set_ylabel('Total cost')
 ax.set_xlabel('Test size')
-
+plt.title('Total cost (lower is better)')
 plt.legend()
 plt.savefig('analyze/compare_cost_CP_heuristic.png')
 
@@ -107,6 +109,7 @@ ax.plot(n_packs[3][:47], cost[3][:47], "-", label = "Heuristic")
 
 ax.set_ylabel('Total cost')
 ax.set_xlabel('Test size')
+plt.title('Total cost (lower is better)')
 plt.legend()
 plt.savefig('analyze/zoomed_compare_cost_CP_heuristic.png')
 
@@ -123,6 +126,7 @@ ax.plot(n_packs[2][:25], run_time[2][:25], "-", label = "MIP")
 ax.plot(n_packs[3][:25], run_time[3][:25], "-", label = "Heuristic")
 ax.set_ylabel('Run time (s)')
 ax.set_xlabel('Test size')
+plt.title('Run time (lower is better)')
 plt.legend()
 plt.savefig('analyze/compare_run_time_all_first_25_test.png')
 

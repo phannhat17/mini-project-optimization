@@ -49,7 +49,8 @@ axins.set_yticklabels([])
 ax1.indicate_inset_zoom(axins)
 
 ax1.set_ylabel('Cost')
-ax1.set_xlabel('Number of items')
+ax1.set_xlabel('Test size')
+plt.title('CP1 cost (lower is better)')
 plt.legend()
 plt.savefig('analyze/CP1.png')
 
@@ -72,7 +73,8 @@ axins1.set_yticklabels([])
 ax2.indicate_inset_zoom(axins1)
 
 ax2.set_ylabel('Cost')
-ax2.set_xlabel('Number of items')
+ax2.set_xlabel('Test size')
+plt.title('CP2 cost (lower is better)')
 plt.legend()
 plt.savefig('analyze/CP2.png')
 
@@ -85,6 +87,7 @@ ax4.plot(n_packs[7][:41], cost[7][:41], "-", label = "MIP_2")
 ax4.plot(n_packs[8][:41], cost[8][:41], "-", label = "MIP_3")
 
 ax4.set_ylabel('Cost')
-ax4.set_xlabel('Number of items')
+ax4.set_xlabel('Test size')
+plt.title('MIP cost (lower is better)')
 plt.legend()
 plt.savefig('analyze/MIP.png')
