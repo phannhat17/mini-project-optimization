@@ -1,7 +1,7 @@
 # Multiple-type, two-dimensional finite bin packing problem
 This is a mini project for topic 3 in Fundamental of Optimization course of SoICT - HUST
 ## Problem
-There are `K` trucks `1, 2,..., K` for transporting `N` packages of `1, 2, ..., N`. Each truck has a container size of `Wk * Hk`. The dimensions of each package `I` are `wi * hi`. Packages that are placed in the same container must not overlap. Assume that the number K can be large, leading to a large number of trucks that are not being used. `Ck` is the cost of using truck `k`. Find a way to put all the packages in the trucks so that **the total cost is minimal**.  
+`K` trucks `1, 2,..., K` are available to transport `N` packages `1, 2, ..., N`. Each truck has a container size of `Wk * Hk`. The dimensions of each package `I` are `wi * hi`. Packages that are placed in the same container must not overlap. Assume that the number K can be large, leading to a large number of trucks that are not being used. `Ck` represents the cost of using truck `k`. Find a way to put all the packages in the trucks so that **the total cost is minimal**.  
 
 The input data format and how we generated them can be found [here](./input_data/README.md) 
 
