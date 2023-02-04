@@ -64,17 +64,6 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 **Note:**   
 **- Read the script for more details**  
 **- Change the attempt number for each attempt or the results will rewrite each other**
-## Figure
-We have generated 13 figures (data from 7 to 24) for the results of CP solver **(because the running time is quite long for the large input data)** and all figures for Heuristic solver (No MIP because it take so long)    
-  
-You can generate by running this command:  
-```
-./script/gen_figure.sh {mode}
-```
-**Note: Currently, the script can only generate figure for the CP and Heuristic solver** 
-  
-![Example](./figure/generated_CP/0011/bin_10.png)  
-
 
 ## Analysis
 - CP cannot handle data sets larger than 240. 
@@ -103,4 +92,14 @@ Therefore,
 - CP is better than MIP, with better results and faster run time (in some early tests),
 - Heuristic gives the best results in both cost and run time.
 
+## Figure
+We have generated 13 figures (data from 7 to 24) for the results of CP solver **(because the running time is quite long for the large input data)** and all figures for Heuristic solver (No MIP because it take so long)    
+  
+You can generate by running this command:  
+```
+./script/gen_figure.sh {mode}
+```
+**Note: Currently, the script can only generate figure for the CP and Heuristic solver** 
+  
+![Example](./figure/generated_CP/0011/bin_10.png)  
 
