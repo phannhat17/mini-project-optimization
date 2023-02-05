@@ -3,7 +3,7 @@ This is a mini-project for topic 3 in Fundamentals of Optimization course of SoI
 ## Problem
 `K` trucks `1, 2, ..., K` are available for transporting `N` packages `1, 2, ..., N`. Each truck `k` has the container size of `Wk * Hk`. The dimensions of each package `i` are `wi * hi`. Packages that are placed in the same container must not overlap. Assume that the number K can be large, leading to a great number of trucks that are not being used. `Ck` represents the cost of using truck `k`. Find a solution that loads all the packages into those given trucks such that **the total cost of trucks used is minimal**.  
 
-*Throughout our mini-project, some concepts are also used instead of trucks (bins, cars) and packages (items)*
+*Throughout our mini-project, some concepts are also being used instead of trucks (bins, cars) and packages (items)*
 
 The input data format and how we generated them can be found [here](./input_data/README.md) 
 
@@ -44,7 +44,7 @@ The input data format and how we generated them can be found [here](./input_data
 
 ## Results
 Here, we just need **the number of used bins and the total cost**, so for the real running time results, we omitted the printing code of the detailed packing methods **(this affects quite a bit the actual runtime of the solver)**.
-- The results for each model are shown in the `results` folder.
+- The results for each model are shown in the `results` folder
 - An overview of the results can be found [here](./results/results.pdf)
 - CP and MIP model solvers only receive input data up to **600 packages**   
 - You can use google colab to run our project like [this](https://colab.research.google.com/drive/1ouxqr2eeJTfJou74Oxw4Syih_zFGgm2p?usp=sharing)    
@@ -76,23 +76,23 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 
 
 **All:**
-- CP cannot handle data sets larger than 240*240. 
-- MIP cannot handle data sets larger than 44*44.
-- Heuristic can handle all test cases (the largest test size is 10,000*10,000).
+- CP cannot handle data sets larger than 240\*240. 
+- MIP cannot handle data sets larger than 44\*44.
+- Heuristic can handle all test cases (the largest test size is 10,000\*10,000).
 
 **Comparing all results (total cost):**
 - MIP gives the **worst** results.
 - CP1 and CP2 give **nearly equivalent** results, but with larger data sets, CP2 gives better results.
-- Heuristic gives really good results, with tests of size <100*100 it is still a bit inferior to CP, but for all other tests it is significantly better.
+- Heuristic gives really good results, with tests of size <100\*100 it is still a bit inferior to CP, but for all other tests it is significantly better.
 
 ![Cost](./analyze/compare_cost_all.png)
 ![Cost](./analyze/zoomed_compare_cost_all.png)
 
 **Comparing all run time:**
 
-- MIP reaches the time limit of 300 seconds for all tests with size >= 15*15.
-- CP reaches the time limit of 300 seconds for all tests with size >= 22*22.
-- Heuristic has a very short run time, mostly under 1 second; even for a test size of 10,000*10,000, it just takes about 5 seconds to provide the result.
+- MIP reaches the time limit of 300 seconds for all tests with size >= 15\*15.
+- CP reaches the time limit of 300 seconds for all tests with size >= 22\*22.
+- Heuristic has a very short run time, mostly under 1 second; even for a test size of 10,000\*10,000, it just takes about 5 seconds to provide the result.
 
 ![Example](./analyze/compare_run_time_all_first_25_test.png)
 
@@ -103,7 +103,7 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 - Heuristic gives the best results in both cost and run time.
 
 ## Figure
-We have generated 13 figures **(just data sizes from 7*3 to 24*24; larger ones are quite slow)** for the results of the CP solver and all figures for the Heuristic solver (none for the MIP due to its long running time).    
+We have generated 13 figures **(just data sizes from 7\*3 to 24\*24; larger ones are quite slow)** for the results of the CP solver and all figures for the Heuristic solver (none for the MIP due to its long running time).    
   
 You can generate with this command:  
 ```
