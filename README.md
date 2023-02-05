@@ -108,7 +108,7 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 - CP is better than MIP, with better results and faster run time (in some early tests),
 - Heuristic gives the best results in both cost and run time.
 
-## Figure
+## Visualizer
 We have generated 13 figures **(just data sizes from 7\*3 to 24\*24; larger ones are quite slow)** for the results of the CP solver and all figures for the Heuristic solver (none for the MIP due to its long running time).    
   
 You can generate with this command:  
