@@ -35,18 +35,18 @@ def main_solver(file_path, time_limit):
 
     # 
     # Variables
-    # 
-    pack_in_bin = {}
-    rotate = []
+    # s
+    X = {}
+    R = []
     for i in range(n_packs):
-        # rotate[i] = 1 iff item i is rotated
-        rotate.append(model.NewBoolVar(f'package_{i}_rotated'))
+        # R[i] = 1 iff item i is rotated
+        R.append(model.NewBoolVar(f'package_{i}_rotated'))
         for j in range(n_bins):
-            # pack_in_bin[i, j] = 1 iff item i is packed in bin j.
-            pack_in_bin[i, j] = model.NewBoolVar(f'pack_{i}_in_bin_{j}')
+            # X[i, j] = 1 iff item i is packed in bin j.
+            X[i, j] = model.NewBoolVar(f'pack_{i}_in_bin_{j}')
 
-    # bin_is_used[j] = 1 iff bin j has been used.
-    bin_is_used = [model.NewBoolVar(f'bin_{j}_is_used)') for j in range(n_bins)]
+    # Z[j] = 1 iff bin j has been used.
+    Z = [model.NewBoolVar(f'bin_{j}_is_used)') for j in range(n_bins)]
 
     # Width and height of each pack
     width = []
@@ -62,10 +62,10 @@ def main_solver(file_path, time_limit):
         y.append(model.NewIntVar(0, max_height, f'y_{i}'))
 
         # if pack rotated -> switch the height and width
-        model.Add(width[i] == packs[i][0]).OnlyEnforceIf(rotate[i].Not())
-        model.Add(width[i] == packs[i][1]).OnlyEnforceIf(rotate[i])
-        model.Add(height[i] == packs[i][1]).OnlyEnforceIf(rotate[i].Not())
-        model.Add(height[i] == packs[i][0]).OnlyEnforceIf(rotate[i])
+        model.Add(width[i] == packs[i][0]).OnlyEnforceIf(R[i].Not())
+        model.Add(width[i] == packs[i][1]).OnlyEnforceIf(R[i])
+        model.Add(height[i] == packs[i][1]).OnlyEnforceIf(R[i].Not())
+        model.Add(height[i] == packs[i][0]).OnlyEnforceIf(R[i])
 
 
 
@@ -74,15 +74,15 @@ def main_solver(file_path, time_limit):
     # 
     # Each pack can only be placed in one bin
     for i in range(n_packs):
-        model.Add(sum(pack_in_bin[i, j] for j in range(n_bins)) == 1)
+        model.Add(sum(X[i, j] for j in range(n_bins)) == 1)
         
     # if pack in bin, it cannot exceed the bin size
     for i in range(n_packs):
         for j in range(n_bins):
-            model.Add(x[i] <= bins[j][0]).OnlyEnforceIf(pack_in_bin[i, j])
-            model.Add(y[i] <= bins[j][1]).OnlyEnforceIf(pack_in_bin[i, j])
-            model.Add(x[i] >= width[i]).OnlyEnforceIf(pack_in_bin[i, j])
-            model.Add(y[i] >= height[i]).OnlyEnforceIf(pack_in_bin[i, j])            
+            model.Add(x[i] <= bins[j][0]).OnlyEnforceIf(X[i, j])
+            model.Add(y[i] <= bins[j][1]).OnlyEnforceIf(X[i, j])
+            model.Add(x[i] >= width[i]).OnlyEnforceIf(X[i, j])
+            model.Add(y[i] >= height[i]).OnlyEnforceIf(X[i, j])            
 
     # If 2 pack in the same bin they cannot overlap
     for i in range(n_packs-1):
@@ -101,18 +101,18 @@ def main_solver(file_path, time_limit):
             model.Add(y[i] > y[i] - height[i]).OnlyEnforceIf(a4.Not())
 
             for j in range(n_bins):
-                model.AddBoolOr(a1, a2, a3, a4).OnlyEnforceIf(pack_in_bin[i, j], pack_in_bin[k, j])
+                model.AddBoolOr(a1, a2, a3, a4).OnlyEnforceIf(X[i, j], X[k, j])
  
     # Find which bin has been used               
     for j in range(n_bins):
         b1 = model.NewBoolVar('b')
-        model.Add(sum(pack_in_bin[i, j] for i in range(n_packs)) == 0).OnlyEnforceIf(b1)
-        model.Add(bin_is_used[j] == 0).OnlyEnforceIf(b1)
-        model.Add(sum(pack_in_bin[i, j] for i in range(n_packs)) != 0).OnlyEnforceIf(b1.Not())
-        model.Add(bin_is_used[j] == 1).OnlyEnforceIf(b1.Not())
+        model.Add(sum(X[i, j] for i in range(n_packs)) == 0).OnlyEnforceIf(b1)
+        model.Add(Z[j] == 0).OnlyEnforceIf(b1)
+        model.Add(sum(X[i, j] for i in range(n_packs)) != 0).OnlyEnforceIf(b1.Not())
+        model.Add(Z[j] == 1).OnlyEnforceIf(b1.Not())
 
     # Objective function
-    cost = sum(bin_is_used[j] * bins[j][2] for j in range(n_bins))
+    cost = sum(Z[j] * bins[j][2] for j in range(n_bins))
     model.Minimize(cost)
 
     # Creates a solver and solves the model
@@ -127,19 +127,19 @@ def main_solver(file_path, time_limit):
     if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
         print('--------------Solution Found--------------')
 
-        # # Uncomment if you want to see the way to put packages in bins
-        # # Not necessary in the statistics, so we comment it out
-        # for i in range(n_packs):
-        #     if solver.Value(rotate[i]) == 1:
-        #         print(f'Rotate pack {i+1} and put', end=' ')
-        #     else:
-        #         print(f'Put pack {i+1}', end=' ')
-        #     for j in range(n_bins):
-        #         if solver.Value(pack_in_bin[i, j]) == 1:
-        #             print(f'in bin {j+1}', end=' ')
-        #     print(f'that the top right corner coordinate (x, y) is ({solver.Value(x[i])}, {solver.Value(y[i])})')
+        # Uncomment if you want to see the way to put packages in bins
+        # Not necessary in the statistics, so we comment it out
+        for i in range(n_packs):
+            if solver.Value(R[i]) == 1:
+                print(f'Rotate pack {i+1} and put', end=' ')
+            else:
+                print(f'Put pack {i+1}', end=' ')
+            for j in range(n_bins):
+                if solver.Value(X[i, j]) == 1:
+                    print(f'in bin {j+1}', end=' ')
+            print(f'that the top right corner coordinate (x, y) is ({solver.Value(x[i])}, {solver.Value(y[i])})')
 
-        print(f'Number of bin used  : {sum(solver.Value(bin_is_used[i]) for i in range(n_bins))}')
+        print(f'Number of bin used  : {sum(solver.Value(Z[i]) for i in range(n_bins))}')
         print(f'Total cost          : {solver.ObjectiveValue()}')
         print('----------------Statistics----------------')
         print(f'Status              : {solver.StatusName(status)}')
