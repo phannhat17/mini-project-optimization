@@ -32,7 +32,7 @@ for path in resuslt_path:
         fail_tests.append(len(data)-len(remove_fail))
 
 
-# compare exact vs heuristics
+# compare all
 fig, ax = plt.subplots(figsize=(15, 9))
 ax.plot(n_packs[0], cost[0], "-", label = "CP1")
 ax.plot(n_packs[1], cost[1], "-", label = "CP2")
