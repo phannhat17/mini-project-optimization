@@ -113,23 +113,23 @@ if __name__ == '__main__':
                 solver.Add(c1 + c2 + c3 + c4 <= e*M )
 
     # find cars be used
-    y = {} # y[m] = 1 iff car m be used
+    z = {} # z[m] = 1 iff car m be used
     for m in range(k):
-        y[m] = solver.IntVar(0, 1, 'y[%i] ' %m)
-        # if sum(x[i][m]) >= 1 then car m be used => y[m] = 1
-        # else, y[m] = 0
+        z[m] = solver.IntVar(0, 1, 'z[%i] ' %m)
+        # if sum(x[i][m]) >= 1 then car m be used => z[m] = 1
+        # else, z[m] = 0
 
         q = solver.IntVar(0,n,f'q[{m}]')
         solver.Add(q == sum(x[(i,m)] for i in range(n)))
         # car m be used iff there are at least 1 item be packed in car m, so sum(x[(i,m)] for i in range(n)) != 0 
         
-        # q = 0 => y[m] = 0
-        # q != 0 => y[m] = 1
-        solver.Add(y[m] <= q * M)
-        solver.Add(q <= y[m] * M)
+        # q = 0 => z[m] = 0
+        # q != 0 => z[m] = 1
+        solver.Add(z[m] <= q * M)
+        solver.Add(q <= z[m] * M)
 
     # objective
-    cost = sum(y[m]*data['cost'][m] for m in range(k))
+    cost = sum(z[m]*data['cost'][m] for m in range(k))
     solver.Minimize(cost)
     solver.set_time_limit(time_limit * 1000)
 
@@ -137,13 +137,13 @@ if __name__ == '__main__':
     print(status)
     if status == pywraplp.Solver.OPTIMAL or status == pywraplp.Solver.FEASIBLE:
         print('--------------Solution Found--------------')
-        # for i in range(n):
-        #     print(f'put item {i+1} with rotation {int(Ro[i].solution_value())}', end=' ') 
-        #     for j in range(k):
-        #         if x[i,j].solution_value() ==1:
-        #             print(f'in bin {j+1}', end=' ')
-        #     print(f'at {l[i].solution_value()} {b[i].solution_value()} -> {r[i].solution_value()} {t[i].solution_value()}')
-        print(f'Number of bin used  :',int(sum(y[m].solution_value() for m in range(k))))
+        for i in range(n):
+            print(f'put item {i+1} with rotation {int(Ro[i].solution_value())}', end=' ') 
+            for j in range(k):
+                if x[i,j].solution_value() ==1:
+                    print(f'in bin {j+1}', end=' ')
+            print(f'at {l[i].solution_value()} {b[i].solution_value()} -> {r[i].solution_value()} {t[i].solution_value()}')
+        print(f'Number of bin used  :',int(sum(z[m].solution_value() for m in range(k))))
         print(f'Total cost          : {solver.Objective().Value()}')
         print('----------------Statistics----------------')
         if status == pywraplp.Solver.OPTIMAL:
