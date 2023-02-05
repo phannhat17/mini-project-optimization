@@ -20,5 +20,5 @@
 09 tests mainly for heuristic testing:
     2000*2000, 3000*3000, ..., 10000*10000
 
-The input size is denoted by `number_of_items` * `number_of_bins`.
+The input size is denoted by (number_of_items * number_of_bins).
 ```
