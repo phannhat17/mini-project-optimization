@@ -70,7 +70,8 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 ## Analysis
 **Exact solution:**
 - CP gives exact solution with tests have size: `7*3`, `10*10`, `11*11`, `12*12`, `13*13`, `14*14`, `15*15`, `16*16`, `17*17`, `19*19`, `20*20`, `21*21`.
-- MIP gives exact solution with tests have size: `7*3`, `10*10`, `11*11`, `12*12`, `14*14`.
+- MIP gives exact solution with tests have size: `7*3`, `10*10`, `11*11`, `12*12`, `14*14`.  
+
 **All:**
 - CP cannot handle data sets larger than 240. 
 - MIP cannot handle data sets larger than 44.
