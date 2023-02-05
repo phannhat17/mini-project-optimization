@@ -7,6 +7,12 @@ This is a mini-project for topic 3 in Fundamentals of Optimization course of SoI
 
 The input data format and how we generated them can be found [here](./input_data/README.md) 
 
+## Our team
+- Chu Minh Ha - 20210293
+- Phan Dinh Nhat - 20210654
+- Do Quang Minh - 20210579
+- Nguyen Huu Duan - 20214951
+
 ## Modeling the problem
 - CP model: Details are written in [this file](CP_model.pdf)
 - MIP model: Details are written in [this file](MIP_model.pdf)
