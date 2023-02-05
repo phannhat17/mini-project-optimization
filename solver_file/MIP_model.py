@@ -55,6 +55,7 @@ if __name__ == '__main__':
     M = 1000000
 
     x = {} # x[(i,m)] = 1 iff item i is packed in car m else 0
+    # Ro represent for R in the presentation file/ pdf model file
     Ro = {} # if Ro = 1 then rotation = 90 degree, else 0
     l = {} # left coordination of item
     r = {} # right coordination of item
