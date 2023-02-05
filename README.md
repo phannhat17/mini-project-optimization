@@ -68,11 +68,15 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 **- Change the attempt number for each attempt or the results will rewrite each other**
 
 ## Analysis
+**Exact solution:**
+- CP gives exact solution with tests have size: `7*3`, `10*10`, `11*11`, `12*12`, `13*13`, `14*14`, `15*15`, `16*16`, `17*17`, `19*19`, `20*20`, `21*21`.
+- MIP gives exact solution with tests have size: `7*3`, `10*10`, `11*11`, `12*12`, `14*14`.
+**All:**
 - CP cannot handle data sets larger than 240. 
 - MIP cannot handle data sets larger than 44.
 - Heuristic can handle all test cases (the largest test size is 10,000).
 
-**Comparing results (total cost):**
+**Comparing all results (total cost):**
 - MIP gives the **worst** results.
 - CP1 and CP2 give **nearly equivalent** results, but with larger data sets, CP2 gives better results.
 - Heuristic gives really good results, with tests of size <100 it is still a bit inferior to CP, but for all other tests it is significantly better.
@@ -80,7 +84,7 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 ![Cost](./analyze/compare_cost_all.png)
 ![Cost](./analyze/zoomed_compare_cost_all.png)
 
-**Comparing run time:**
+**Comparing all run time:**
 
 - MIP reaches the time limit of 300 seconds for all tests with size >= 15.
 - CP reaches the time limit of 300 seconds for all tests with size >= 22.
