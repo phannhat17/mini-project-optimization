@@ -78,6 +78,8 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 - CP gives exact solutions for tests with sizes: `7*3`, `10*10`, `11*11`, `12*12`, `13*13`, `14*14`, `15*15`, `16*16`, `17*17`, `19*19`, `20*20`, `21*21`.
 - MIP gives exact solutions for tests with sizes: `7*3`, `10*10`, `11*11`, `12*12`, `14*14`.  
 
+
+![Cost](./analyze/table_compare_only_exact.png)
 ![Cost](./analyze/compare_only_exact.png)
 
 
