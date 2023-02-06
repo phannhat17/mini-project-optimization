@@ -45,7 +45,7 @@ ax.plot(n_packs[1][:13], cost[1][:13], "-", label = "MIP")
 ax.plot(n_packs[2][:13], cost[2][:13], "-", label = "Heuristic")
 
 ax.set_ylabel('Total cost')
-ax.set_xlabel('Test size')
+ax.set_xlabel('Number of items')
 plt.title('Total cost (lower is better)')
 plt.legend()
 plt.savefig('analyze/compare_only_exact.png')
