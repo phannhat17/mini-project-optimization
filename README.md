@@ -116,7 +116,7 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 
 - MIP reaches the time limit of 300 seconds for all tests with size >= 15 x 15.
 - CP reaches the time limit of 300 seconds for all tests with size >= 22 x 22.
-- Heuristic has a very short run time, mostly under 1 second; even for a test size of 10,000 x 10,000, it just takes about 5 seconds to provide the result.
+- Heuristic has a very short run time, every test is under 1 second, even for the test size of 10,000 x 10,000.
 
 ![Example](./analyze/compare_run_time_all_first_25_test.png)
 
@@ -124,7 +124,7 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 
 - MIP is not good in terms of results and run time,
 - CP is better than MIP, with better results and faster run time (in some early tests),
-- Heuristic gives the best results in both cost and run time.
+- Heuristic gives the best results in both cost and run time. 
 
 ## Visualizer
 We have generated 13 figures **(just data sizes from 7 x 3 to 24 x 24; larger ones are quite slow)** for the results of the CP solver and all figures for the Heuristic solver (none for the MIP due to its long running time).    
