@@ -2,18 +2,14 @@ import matplotlib.pyplot as plt
 
 resuslt_path = ["results/results_CP1/results_CP1_300_1.csv","results/results_CP2/results_CP2_300_1.csv", "results/results_MIP/results_MIP_300_1.csv", "results/results_HEU/results_HEU_1.csv"]
 
-success_tests = []
-fail_tests = []
 n_packs = []
 cost = []
-run_time = []
 
 # get data
 for path in resuslt_path:
     with open(path, "r") as f:
         _n_packs=[]
         _cost=[]
-        _run_time=[]
         data = f.readlines()
         data.pop(0)
         remove_fail = []
@@ -25,17 +21,10 @@ for path in resuslt_path:
             _n_packs.append(int(values[0]))
             if "FEASIBLE" not in line:
                 _cost.append(float(values[3]))
-                _run_time.append(float(values[5]))
             else:
                 _cost.append(None)
-                _run_time.append(None)
         n_packs.append(_n_packs)
         cost.append(_cost)
-        run_time.append(_run_time)
-        success_tests.append(len(remove_fail))
-        fail_tests.append(len(data)-len(remove_fail))
-
-
 
 # compare only exact
 fig, ax = plt.subplots(figsize=(15, 9))
