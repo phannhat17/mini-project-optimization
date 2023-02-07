@@ -7,19 +7,19 @@
 ## Generated data
 ```
 1 sample file
-    7*3
+    7 x 3
     
 45 tests:
-    10*10, 11*11, .., 53*53, 54*54
+    10 x 10, 11 x 11, .., 53 x 53, 54 x 54
 
 10 tests: 
-    90*90, 120*120, 150*150, .., 330*330, 360*360
+    90 x 90, 120 x 120, 150 x 150, .., 330 x 330, 360 x 360
 
 10 tests:
-    550*550, 600*600, .., 950*950, 1000*1000
+    550 x 550, 600 x 600, .., 950 x 950, 1000 x 1000
 
 09 tests mainly for heuristic testing:
-    2000*2000, 3000*3000, ..., 10000*10000
+    2000 x 2000, 3000 x 3000, ..., 10000 x 10000
 
-The input size is denoted by (number_of_items * number_of_bins).
+The input size is denoted by (number_of_items x number_of_bins).
 ```
