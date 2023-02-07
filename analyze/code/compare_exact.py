@@ -49,15 +49,3 @@ plt.legend()
 plt.savefig('analyze/compare_only_exact.png')
 # plt.show()
 
-# compare only exact
-fig, ax = plt.subplots(figsize=(15, 9))
-ax.plot(n_packs[0][:13], run_time[0][:13], "-", label = "CP1")
-ax.plot(n_packs[1][:13], run_time[1][:13], "-", label = "CP2")
-ax.plot(n_packs[2][:13], run_time[2][:13], "-", label = "MIP")
-
-ax.set_ylabel('Run time')
-ax.set_xlabel('Number of items')
-plt.title('Run time (lower is better)')
-plt.legend()
-plt.savefig('analyze/compare_time_only_exact.png')
-# plt.show()
