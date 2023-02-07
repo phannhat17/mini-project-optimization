@@ -38,7 +38,7 @@ for file in $files; do
 
     # Run the solver 
     if [ $mode == "CP" ]; then 
-        python solver_file/CP_model_solver/CP_model_1.py $file $time_limit | sed -n '/Solution Found/,/Number of bin used/p' | sed '/Solution Found\|Number of bin used/d' > $output_folder/$(basename $file).out 
+        python solver_file/CP_model_solver/CP_model_2.py $file $time_limit | sed -n '/Solution Found/,/Number of bin used/p' | sed '/Solution Found\|Number of bin used/d' > $output_folder/$(basename $file).out 
     else
         ./solver_file/Heuristic/heuristic_main $file | sed -n '/Number of bin given:/,/Number of bin used/p' | sed '/Number of bin given:\|Number of bin used/d' > $output_folder/$(basename $file).out 
     fi

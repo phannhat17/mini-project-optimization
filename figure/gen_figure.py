@@ -74,7 +74,7 @@ if __name__ == '__main__':
         ax.set_xlim([0, bins[_bin-1][0]])
         ax.set_ylim([0, bins[_bin-1][1]])
         ax.set_aspect('equal')
-        plt.title(f'Data {len(packs)}: Bin {_bin}')
+        plt.title(f'Test {len(packs)}: Bin {_bin}')
         plt.axis('on')
         # plt.show()
         plt.savefig(f'{save_to_path}/bin_{_bin}.png')
