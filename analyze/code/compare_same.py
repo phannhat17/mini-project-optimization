@@ -24,7 +24,7 @@ for path in resuslt_path:
             values = line.strip().split(",")
             _n_packs.append(int(values[0]))
             _cost.append(float(values[3]))
-            _run_time.append(float(values[6]))
+            _run_time.append(float(values[5]))
         n_packs.append(_n_packs)
         cost.append(_cost)
         run_time.append(_run_time)

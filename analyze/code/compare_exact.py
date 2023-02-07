@@ -25,7 +25,7 @@ for path in resuslt_path:
             _n_packs.append(int(values[0]))
             if "FEASIBLE" not in line:
                 _cost.append(float(values[3]))
-                _run_time.append(float(values[6]))
+                _run_time.append(float(values[5]))
             else:
                 _cost.append(None)
                 _run_time.append(None)

@@ -20,7 +20,7 @@ for path in resuslt_path:
         for line in data:
             values = line.strip().split(",")
             _n_packs.append(int(values[0]))
-            _run_time.append(float(values[6]))
+            _run_time.append(float(values[5]))
             if 'NO SOLUTION FOUND' not in line:
                 _cost.append(float(values[3]))
             else:
