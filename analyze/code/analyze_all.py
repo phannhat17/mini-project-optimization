@@ -18,15 +18,13 @@ for path in resuslt_path:
         data.pop(0)
         remove_fail = []
         for line in data:
+            values = line.strip().split(",")
+            _n_packs.append(int(values[0]))
+            _run_time.append(float(values[6]))
             if 'NO SOLUTION FOUND' not in line:
-                values = line.strip().split(",")
-                _n_packs.append(int(values[0]))
                 _cost.append(float(values[3]))
-                _run_time.append(float(values[6]))
             else:
-                _n_packs.append(int(values[0]))
                 _cost.append(None)
-                _run_time.append(float(values[6]))
         n_packs.append(_n_packs)
         cost.append(_cost)
         run_time.append(_run_time)
