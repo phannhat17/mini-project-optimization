@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-resuslt_path = ["results/results_CP2/results_CP2_300_1.csv", "results/results_MIP/results_MIP_300_1.csv", "results/results_HEU/results_HEU_1.csv"]
+resuslt_path = ["results/results_CP1/results_CP1_300_1.csv","results/results_CP2/results_CP2_300_1.csv", "results/results_MIP/results_MIP_300_1.csv", "results/results_HEU/results_HEU_1.csv"]
 
 success_tests = []
 fail_tests = []
@@ -41,7 +41,7 @@ for path in resuslt_path:
 # compare only exact
 fig, ax = plt.subplots(figsize=(15, 9))
 ax.plot(n_packs[0][:13], cost[0][:13], "-", label = "Exact")
-ax.plot(n_packs[2][:13], cost[2][:13], "-", label = "Heuristic")
+ax.plot(n_packs[3][:13], cost[3][:13], "-", label = "Heuristic")
 
 ax.set_ylabel('Total cost')
 ax.set_xlabel('Number of items')
@@ -53,8 +53,9 @@ plt.savefig('analyze/compare_only_exact.png')
 
 # compare only exact
 fig, ax = plt.subplots(figsize=(15, 9))
-ax.plot(n_packs[0][:13], run_time[0][:13], "-", label = "CP")
-ax.plot(n_packs[1][:13], run_time[1][:13], "-", label = "MIP")
+ax.plot(n_packs[0][:13], run_time[0][:13], "-", label = "CP1")
+ax.plot(n_packs[1][:13], run_time[1][:13], "-", label = "CP2")
+ax.plot(n_packs[2][:13], run_time[2][:13], "-", label = "MIP")
 
 ax.set_ylabel('Run time')
 ax.set_xlabel('Number of items')
