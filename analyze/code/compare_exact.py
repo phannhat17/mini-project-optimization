@@ -23,11 +23,12 @@ for path in resuslt_path:
         for line in remove_fail:
             values = line.strip().split(",")
             _n_packs.append(int(values[0]))
-            _run_time.append(float(values[6]))
             if "FEASIBLE" not in line:
                 _cost.append(float(values[3]))
+                _run_time.append(float(values[6]))
             else:
                 _cost.append(None)
+                _run_time.append(None)
         n_packs.append(_n_packs)
         cost.append(_cost)
         run_time.append(_run_time)
@@ -47,8 +48,6 @@ plt.title('Total cost (lower is better)')
 plt.legend()
 plt.savefig('analyze/compare_only_exact.png')
 # plt.show()
-print(run_time[0][:13])
-print(n_packs[0][:13])
 
 # compare only exact
 fig, ax = plt.subplots(figsize=(15, 9))
