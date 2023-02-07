@@ -78,7 +78,7 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 - CP gives exact solutions for tests with sizes: `7*3`, `10*10`, `11*11`, `12*12`, `13*13`, `14*14`, `15*15`, `16*16`, `17*17`, `19*19`, `20*20`, `21*21`.
 - MIP gives exact solutions for tests with sizes: `7*3`, `10*10`, `11*11`, `12*12`, `14*14`.  
 
-| Input    	|       |    CP 1       |       |      CP 2     |       |       MIP     |       |       Heuristic       |
+<!-- | Input    	|       |    CP 1       |       |      CP 2     |       |       MIP     |       |       Heuristic       |
 |----------	|-----	|-------------	|-----	|-------------	|-----	|-------------	|-----	|---------------------	|
 |          	| f   	| t (s)       	| f   	| t (s)       	| f   	| t (s)       	| f   	| t (s)               	|
 | 0007.txt 	| 250 	| 0.027932056 	| 250 	| 0.029741828 	| 250 	| 3.176666667 	| 300 	| 0.000063000 	|
@@ -93,10 +93,7 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 | 0018.txt 	|     	|             	|     	|             	|     	|             	| 121 	| 0.000196500 	|
 | 0019.txt 	| 106 	| 5.214479066 	| 106 	| 4.515408114 	|     	|             	| 129 	| 0.000239000 	|
 | 0020.txt 	| 171 	| 2.519827466 	| 171 	| 3.259184459 	|     	|             	| 188 	| 0.000226000 	|
-| 0021.txt 	| 108 	| 8.500796449 	| 108 	| 13.22533175 	|     	|             	| 120 	| 0.000229500 	|
-
-
-
+| 0021.txt 	| 108 	| 8.500796449 	| 108 	| 13.22533175 	|     	|             	| 120 	| 0.000229500 	| -->
 
 ![Cost](./analyze/table_compare_only_exact.png)
 ![Cost](./analyze/compare_only_exact.png)
