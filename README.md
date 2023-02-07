@@ -78,7 +78,7 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 - CP gives exact solutions for tests with sizes: `7*3`, `10*10`, `11*11`, `12*12`, `13*13`, `14*14`, `15*15`, `16*16`, `17*17`, `19*19`, `20*20`, `21*21`.
 - MIP gives exact solutions for tests with sizes: `7*3`, `10*10`, `11*11`, `12*12`, `14*14`.  
 
-| Input    	     	<td colspan=2>CP 1         <td colspan=2>CP 2                	 <td colspan=2>MIP         	 <td colspan=2>Heuristic           	|
+| Input    	|       |    CP 1       |       |      CP 2     |       |       MIP     |       |       Heuristic       |
 |----------	|-----	|-------------	|-----	|-------------	|-----	|-------------	|-----	|---------------------	|
 |          	| f   	| t (s)       	| f   	| t (s)       	| f   	| t (s)       	| f   	| t (s)               	|
 | 0007.txt 	| 250 	| 0.027932056 	| 250 	| 0.029741828 	| 250 	| 3.176666667 	| 300 	| 0.000063000 	|
