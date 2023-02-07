@@ -35,18 +35,19 @@ def main_solver(file_path, time_limit: int = 600):
 
     # 
     # Variables
-    # 
-    # X[i, j] = 1 iff item i is packed in bin j.
+    # s
     X = {}
+    R = []
     for i in range(n_packs):
+        # R[i] = 1 iff item i is rotated
+        R.append(model.NewBoolVar(f'package_{i}_rotated'))
         for j in range(n_bins):
+            # X[i, j] = 1 iff item i is packed in bin j.
             X[i, j] = model.NewBoolVar(f'pack_{i}_in_bin_{j}')
 
     # Z[j] = 1 iff bin j has been used.
     Z = [model.NewBoolVar(f'bin_{j}_is_used)') for j in range(n_bins)]
 
-    # R[i] = 1 iff item i is rotated
-    R = [model.NewBoolVar(f'package_{i}_rotated') for i in range(n_packs)]
 
     # Coordinate
     r = [] # right coordinate
