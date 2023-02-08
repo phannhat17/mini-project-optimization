@@ -8,10 +8,12 @@ This is a mini-project for topic 3 in Fundamentals of Optimization course of SoI
 The input data format and how we generated them can be found [here](./input_data/README.md) 
 
 ## Our team
-- Chu Minh Ha - 20210293
-- Phan Dinh Nhat - 20210654
-- Do Quang Minh - 20210579
-- Nguyen Huu Duan - 20214951
+| Name            	| Studen ID 	| Mail                          	|
+|-----------------	|-----------	|-------------------------------	|
+| Chu Minh Ha     	| 20210293  	| ha.cm210293@sis.hust.edu.vn   	|
+| Phan Dinh Nhat  	| 20210654  	| nhat.pd210654@sis.hust.edu.vn 	|
+| Do Quang Minh   	| 20210579  	| minh.dq210579@sis.hust.edu.vn 	|
+| Nguyen Huu Duan 	| 20214951  	| duan.nh214951@sis.hust.edu.vn 	|
 
 ## Modeling the problem
 - CP model: Details are written in [this file](CP_model.pdf)
