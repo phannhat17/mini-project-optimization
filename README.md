@@ -129,7 +129,7 @@ The commmand above will collect the results created by [heuristic_main](/solver_
 - Heuristic gives the best results in both cost and run time. 
 
 ## Visualizer
-We have generated 13 figures **(just data sizes from 7 x 3 to 24 x 24; larger ones are quite slow)** for the results of the CP solver and all figures for the Heuristic solver (none for the MIP due to its long running time).    
+We have generated 13 figures **(just data sizes from 7 x 3 to 24 x 24; larger ones are quite slow)** for the results of the CP solver and all figures for the Heuristic solver. We did not generate any figures for the MIP solver due to its long running time and poor performance, so it is not necessary to include them.     
   
 You can generate with this command:  
 ```
